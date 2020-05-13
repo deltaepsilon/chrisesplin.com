@@ -5,6 +5,7 @@ module.exports = class Index {
     return {
       name: 'Index',
       layout: 'page',
+      title: 'Chris Esplin'
     };
   }
 
