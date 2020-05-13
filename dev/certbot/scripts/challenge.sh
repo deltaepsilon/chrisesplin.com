@@ -1,1 +1,0 @@
-certbot certonly --webroot -w /var/www/certbot -d local.chrisesplin.com

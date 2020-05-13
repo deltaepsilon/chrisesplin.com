@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: writing
 ---
 
 [Download](/static/files/Esplin-Christopher-Resume.pdf)

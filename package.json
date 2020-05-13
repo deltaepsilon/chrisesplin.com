@@ -1,5 +1,5 @@
 {
-  "name": "@quiver/chrisesplin.com",
+  "name": "@deltaepsilon/chrisesplin.com",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/deltaepsilon/chrisesplin.com.git",
@@ -7,14 +7,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "docker-compose build",
+    "build": "docker-compose build && docker-compose run --rm workspace zsh",
     "dev": "docker-compose build workspace && docker-compose run --service-ports --rm workspace zsh",
     "connect": "docker exec -it workspace-chrisesplin.com zsh",
-    "ci:login": "npx firebase login:ci --no-localhost",
-    "ci:build": "docker build --tag=chrisesplin.com .",
-    "ci:interactive": "docker run -it --rm chrisesplin.com sh",
-    "ci:pull": "docker pull us.gcr.io/chrisesplin.com/chrisesplin.com:latest",
-    "ci:latest": "docker run -it --rm us.gcr.io/chrisesplin.com/chrisesplin.com:latest sh",
     "windows:watch": "powershell ./bin/watch.ps1"
   }
 }

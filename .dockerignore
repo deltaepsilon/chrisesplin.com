@@ -2,7 +2,5 @@
 bin
 dev
 
-app/.next
-app/out
 app/node_modules
 app/functions/node_modules
