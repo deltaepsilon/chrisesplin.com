@@ -1,0 +1,303 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ChrisEsplin.com</title>
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Save and Query Firebase Data</span>
+        </div>
+        <div class="subtitle text-bold">Connect to Firebase with the JavaScript SDK</div>
+
+        <span class="date">2016/10/25</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <h2>Promises Review</h2>
+<p>Promises are a prerequisite for this walkthrough. If you’re not comfortable with promises, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">read the docs</a> and/or watch the video below. The Firebase JavaScript SDK uses promises for async operations. You won’t get far without a basic understanding of promises.</p>
+<h2>Video Walkthrough</h2>
+<p>Do you have a handle on promises? Great! The following video will walk you through the basics of saving and querying Firebase data.</p>
+<h3>Exercise: Edit data from the Console</h3>
+<p>Firebase has a built-in console that you can use to edit your data.</p>
+<ol>
+<li>Visit <a href="https://console.firebase.google.com/project/%5D(https://console.firebase.google.com/project/)">https://console.firebase.google.com/project/</a> and either create a new project or access a project that you’ve already created.</li>
+<li>Navigate to the *Database *tab and add some arbitrary data by clicking on the green + buttons and building out nodes.</li>
+</ol>
+<h2>Manage your Firebase from Node.js</h2>
+<p>The Firebase Node.js client requires a Google Cloud API key and the firebase Node library. Follow the steps below for success!</p>
+<h3>Install the client and dependencies</h3>
+<ul>
+<li>
+<p>Visit your <a href="https://console.cloud.google.com/apis/credentials">Google Cloud API Console</a> and select the project that matches up with the Firebase project that you just created. Notice the project selection dropdown at the top-right edge of the console.</p>
+</li>
+<li>
+<p>Open the Credentials tab and click <em>Create credentials</em>. You want the <em>API key</em> option. Create a server key. It will automatically download as a *<em>.json</em> file. This file contains all of the credentials that your server will need to authenticate with Google Cloud and access the Firebase APIs… so protect it! Do not add this file to source control. You can always create new server keys if you lose this one. It’s meant to be revoked and recreated as often as needed.</p>
+</li>
+<li>
+<p>Create a new folder in your development directory called node-client-app and copy your <em>.json</em> credentials into this folder. Rename the <em>.json</em> file to <em>service-account.json</em>.</p>
+</li>
+<li>
+<p>Run <em>npm init</em> to initialize a <em>package.json</em> file. Click through the default <em>package.json</em> selections quickly.</p>
+</li>
+<li>
+<p>Install the Node.js Firebase client with</p>
+</li>
+</ul>
+<pre><code>*npm install --save-dev firebase*
+</code></pre>
+<ul>
+<li>
+<p>Create a file titled <em>node-client.js</em>. This is where we’ll write our script to learn the Firebase Node client.</p>
+</li>
+<li>
+<p>Expected file tree up to this point 👇🏻</p>
+</li>
+</ul>
+<pre><code>├── node-client.js
+├── node_modules
+│ ├── …
+├── package.json
+└── service-account.json
+</code></pre>
+<ul>
+<li>Fill out <em>node-client.js</em> with the code below and run it with</li>
+</ul>
+<pre><code>node node-client.js
+</code></pre>
+<ul>
+<li>
+<p><em>node-client.js</em> should read out whatever test data you’ve added manually with the Firebase Realtime Database console.</p>
+</li>
+<li>
+<p>Note that only the <code>serviceAccount</code> and <code>databaseURL</code> keys are required to initialize the app.</p>
+</li>
+</ul>
+<h2>Saving Data to Firebase</h2>
+<p>There are three <em>firebase</em> functions that will add or modify your data:</p>
+<pre><code>var ref = firebase.database().ref('/some/path');
+var obj = {someAttribute: true};
+
+ref.push(obj);   // Creates a new ref with a new &quot;push key&quot;
+ref.set(obj);    // Overwrites the path
+ref.update(obj); // Updates only the specified attributes 
+</code></pre>
+<h3>ref.push</h3>
+<p>There are two ways to use <em>ref.push()</em>. You can use it to create a new ref with an automatically generated <strong>push key</strong>, or you can save data to a new push key in a single step.</p>
+<p>Both of these methods create new refs with their own <strong>push keys</strong>. Push keys are a critical concept in Firebase, because they enable us to save collections of data and sort them by creation date without key collisions. This would be impossible using zero-indexed arrays like you commonly find in Javascript.</p>
+<p>Let’s unpack that last paragraph. First, imagine a realtime game with millions of users pushing data to your app at the same time. If there are 500 records in a collection and two users try to simultaneously push data to that collection within the same millisecond, could Firebase handle that with a zero-indexed array? No! That would be a mess. You’d have two users trying to push to <em>/somePath/501</em> at the same time — a colliding keys disaster.</p>
+<p>Instead of letting keys collide, Firebase enables us to create unique keys with <em>ref.push()</em>. These keys are fantastic in that they don’t collide while <strong>also being sortable by time</strong>. In case you missed that… huge concept here… the push keys are sortable by time. They’re generated using a timestamp plus some randomness to avoid collisions. If you sort a collection by its push keys, you’re effectively sorting by timestamp. You can test that with the following Node.js script.</p>
+<p><strong>Note:</strong> Change the values for <em>initializeApp</em> to match a Firebase that you own. I’ve created a gist for the code below:</p>
+<h3>ref.set</h3>
+<p>The most straightforward way to save data is <em>ref.set()</em> It overwrites the ref with whatever object you pass it. So <em>usersRef.set({message: ‘I just overwrote your users’});</em> would replace your entire <em>usersRef</em> object with a single JSON object. You’ll typically do something like this:</p>
+<pre><code>var timestamp = new Date().getTime();
+userRef.child(‘timestamp’).set(timestamp);
+</code></pre>
+<h3>ref.update</h3>
+<p>To update some keys without blowing away an entire object, use <em>ref.update()</em>. You could do something like <em>userRef.update({timestamp: 123456789});</em> and overwrite <strong>only the timestamp attribute</strong> of <em>userRef</em>.</p>
+<p>You can also use <em>ref.update()</em> to execute <a href="https://www.firebase.com/blog/2015-09-24-atomic-writes-and-more.html">**atomic writes</a>** by path. You can do something like the following:</p>
+<p>Firebase calls these kinds of updates <strong>multi-location updates</strong>. A use case might be to update a user’s username in three different locations at the same time, or maybe to process a financial transaction and log it simultaneously.</p>
+<p>Multi-location updates either succeed or fail as a batch operation. <em>ref.update()</em> returns a promise, so any errors on the write operation can be handled with a single <em>.catch()</em>.</p>
+<h2>Quiz!</h2>
+<p>Review <em>ref.push()</em>, <em>ref.set()</em> and <em>ref.update()</em> in <a href="https://firebase.google.com/docs/database/web/save-data">the docs</a> and answer the following questions:</p>
+<ul>
+<li>
+<p>What is a “push key”? (note: the docs refer to “push keys” as unique ids)</p>
+</li>
+<li>
+<p>Why use push keys instead of zero-indexed arrays?</p>
+</li>
+<li>
+<p>How can you use <em>ref.update()</em> to update multiple paths in a single, atomic operation?</p>
+</li>
+<li>
+<p>What does <em>ref.transaction()</em> do and why would you use it instead of <em>ref.set()</em>?</p>
+</li>
+</ul>
+<h2>Querying Data from Firebase</h2>
+<p>The Firebase SDKs for Node.js and the browser are very, very similar. We’ll be able to copy/paste Node.js code directly into an HTML script tag and it will function the same. The difference between the two SDKs is how they handle authentication. Node.js auth is simple with a Google Cloud service account API key. You can’t put a Google Cloud service account in the browser without giving full read/write access to your Firebase to the world, so you’ll need to authenticate using Google’s generic browser API before accessing your Firebase from the client.</p>
+<p>Once authenticated, both Javascript SDKs expose the same API for interacting with Firebase, so we’ll cover the API first in Node.js for simplicity.</p>
+<h3>Firebase events</h3>
+<p>Firebase delivers data to us with five different events accessed with <em>ref.on(‘event’, callback)</em>:</p>
+<ol>
+<li>
+<p><em>value</em></p>
+</li>
+<li>
+<p><em>child_added</em></p>
+</li>
+<li>
+<p><em>child_changed</em></p>
+</li>
+<li>
+<p><em>child_removed</em></p>
+</li>
+<li>
+<p><em>child_moved</em></p>
+</li>
+</ol>
+<p>These events are mostly self-explanatory, and they’re <a href="https://firebase.google.com/docs/database/web/retrieve-data">covered in the docs</a>, but let’s get into the details.</p>
+<h3>ref.on(‘value’, callback);</h3>
+<p>The <em>value</em> event fires once for an initial data load and again whenever any data changes. <em>value</em> is the event that we’ll use most, typically with <em>ref.once(‘value’, callback)</em>, because it returns a ref’s children in a single operation. You can also use <em>ref.on(‘value’, callback)</em> to keep an object in memory synced up with Firebase.</p>
+<h3>ref.on(‘child_added’, callback);</h3>
+<p>The <em>child_added</em> event <strong>fires once for every existing child</strong> and then continues to fire every time a new child is added. It’s a lot like <em>value. Y</em>ou can use it with <em>ref.once(‘child_added’, callback), but that’s a less-common pattern</em>. <em>child_added</em> is often used as follows…</p>
+<h3>child_changed, child_removed, child_moved</h3>
+<p>These events are less commonly used. Review <em>child_changed</em>, <em>child_removed</em> and <em>child_moved</em> in <a href="https://developers.google.com/firebase/docs/database/web/retrieving-data#section-event-types">the docs</a>. They do about what you’d think they do, but they’re mostly useful for advanced querying, so we’ll cover them later as needed.</p>
+<h3>ref.off(‘some_event’, callback);</h3>
+<p>Use <em>ref.off()</em> to stop listening to a ref’s events. Just make sure to pass in the exact same callback function… not a copy of the function.</p>
+<h3>ref.once(‘value’, callback);</h3>
+<p>The most common use of Firebase ref events is to listen to the <em>value</em> event for initial data load and then call <em>.off</em> on the listener as soon as the data has loaded. This is annoying to do over and over, so Firebase gives us <em>ref.once(‘value’, callback)</em> to listen to the initial load and then turn off the listener automatically. <em>ref.once()</em> takes an optional callback and returns a promise. You can use *ref.once() <em>with</em> child_added, child_changed <em>and</em> child_removed *events, but it’s a less-common pattern.</p>
+<p>You’ll notice that <em>ref.on</em> requires a callback. DO NOT USE <em>ref.on(‘child_added’).then()</em>. It doesn’t make any sense to use <em>ref.on()</em> with a promise, because it is meant to fire over and over again like a normal event listener that you might use in the browser. <em>ref.once()</em> is a special case that returns a promise to make our lives easier.</p>
+<h3>Data snapshots</h3>
+<p>Firebase ref events return data snapshots. So far we’ve just used <em>snap.val()</em> to get the snapshot’s JSON, but there are more snapshot functions…</p>
+<ul>
+<li>
+<p><em>snap.val()</em> — Gets the value</p>
+</li>
+<li>
+<p><em>snap.exportVal()</em> — Also gets the value (kind of duplicative)</p>
+</li>
+<li>
+<p>*snap.child() *— Navigate to a child ref</p>
+</li>
+<li>
+<p><em>snap.hasChild()</em> — Test whether there is at least one child</p>
+</li>
+<li>
+<p><em>snap.getPriority()</em> — Priorities are mostly deprecated… don’t worry about this if you’re new to Firebase</p>
+</li>
+<li>
+<p><em>snap.forEach(callback)</em> — Loop through child snapshots with a callback</p>
+</li>
+<li>
+<p><em>snap.hasChildren()</em> — Test whether there are multiple children</p>
+</li>
+<li>
+<p>*snap.ref *— An attribute that holds the snapshot’s ref. Works with child snapshots within a <em>snap.forEach</em> as well.</p>
+</li>
+<li>
+<p>*snap.key *— An attribute that holds the ref’s key</p>
+</li>
+<li>
+<p><em>snap.numChildren()</em> — How many children does the reference have?</p>
+</li>
+</ul>
+<p>You won’t need most of these. *snap.val(), snap.key, snap.ref *and <em>snap.forEach(callback)</em> are the most common use cases. <em>snap.forEach</em> is great when you want to loop through a bunch of children like this:</p>
+<h2>Quiz!</h2>
+<p>Review <em>value</em> and <em>child_added</em> events in <a href="https://firebase.google.com/docs/database/web/retrieve-data">the docs</a> and answer the following questions.</p>
+<ul>
+<li>
+<p>Which event is best for returning a single item?</p>
+</li>
+<li>
+<p>Which event is best for returning lists of items?</p>
+</li>
+<li>
+<p>Can <em>value</em> be used to retrieve a shallow copy of a node?</p>
+</li>
+<li>
+<p>Which event consistently returns sorted data?</p>
+</li>
+</ul>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

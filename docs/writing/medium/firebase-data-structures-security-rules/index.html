@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ChrisEsplin.com</title>
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Firebase Data Structures&#58; Security Rules</span>
+        </div>
+        <div class="subtitle text-bold">This is the third installment of my Firebase Data Structures series. Go catch up on pagination and complex data structures for the background you may need to understand this. Once you’re ready, let’s talk security rules!</div>
+
+        <span class="date">2016/02/28</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>**UPDATE 6/30/2016: **I’ve published my free class, <a href="https://t.co/3eNdfsMtfu">Firebase 3.0 for Web</a>. Check it out.</p>
+<h3>Example Data</h3>
+<p><img src="./images/1r1gdaGgg1gRqDMqb434mCw.png" alt=""></p>
+<p>The above example data breaks up user data into /userLogs, /userOwned, /userReadable and /users</p>
+<p>Notice that all of the user data is then nested under a single user key, **-**KB_wr7Obntw9yrQNVK7. This way I can use a single user key to access all of the relevant user data.</p>
+<h3>Security rules cascade</h3>
+<p>If you grant read or write privileges to a user on any node, you automatically grant that user read or write privileges on <strong>all child nodes</strong>. This is a consequence of how Firebase maintains performant reads and writes.</p>
+<p>If you ask to read a node for which you have read permission, Firebase will return the entire node and all of its children. The Firebase servers don’t have time to go parsing through and deleting bits and pieces of the node based on nested security rules.</p>
+<p>The same thing goes for writes. If you’re allowed to write to a node, you’re allowed to overwrite everything. It would be unreasonable to expect Firebase to preserve some nodes based on nested security rules.</p>
+<p>Cascading security rules are not a problem. Just structure your data according to the privileges that you want to grant, and all will be well. You’ll find yourself writing much simpler security rules.</p>
+<h3>Use Bolt. Don’t try to do security rules by hand.</h3>
+<p>The Firebase team recently release a security rule generator named <a href="https://github.com/firebase/bolt">Bolt</a>. It’s labelled as experimental, but you can easily review the rules that it creates, and I’ve been using it in production for a while. It’s slick. Here are some example rules for the above data structure.</p>
+<p>The matchUserKey() function assumes that I have an access control list (ACL) with a list of Firebase Authentication-provided uids that map to user keys. The ACL could look like this:</p>
+<blockquote>
+<p>{“acl”: {“facebook:1234567890”: {“userKey”: “**-**KB_wr7Obntw9yrQNVK7”, “created”: “2016–02–29”, “someOtherNode”: … }}}</p>
+</blockquote>
+<p>The authed user in this case has <em>facebook:1234567890</em> as a uid, and my server process would have created the user and the uid-to-userKey mapping entry on the /acl node.</p>
+<h3>Nest data according to security rules</h3>
+<p>By nesting data as explained, I’ve trimmed my security rules down to the bare minimum. When I want to create a type of user-readable node, I just add it under the user. For instance, I could create /userReadable/-KB_wr7Obntw9yrQNVK7/<strong>transactions</strong> to allow the user to read his or her transactions. I wouldn’t need to write a new rule for this node, because it will simply inherit the cascading rule I that wrote for /userReadable/-KB_wr7Obntw9yrQNVK7.</p>
+<h3>It’s ok! Get fancy.</h3>
+<p>This little trick with the ACL entry will let you get fancy. Check out this rule:</p>
+<blockquote>
+<p>isAdmin() = true == root.child(‘queryDemo’).child(‘users’).child(root.child(‘queryDemo’).child(‘acl’).child(auth.uid).child(‘userKey’).val()).child(‘isAdmin’).val();</p>
+</blockquote>
+<p>This sucker looks at /queryDemo/users/… then uses the ACL to reach down and find the userKey… and uses the userKey to check /queryDemo/users/&lt;userKey&gt;/isAdmin to see if the node equals <em>true</em>.</p>
+<p>I sprinkle my isAdmin() function throughout my security rules to grant admin users read/write. I have an isModerator() function as well that’s nearly identical.</p>
+<p>Read up on Firebase’s excellent <a href="https://www.firebase.com/docs/security/guide/">security rules docs</a> and imagine the possibilities! 👯 🍕 🍾</p>
+<h3>As always…</h3>
+<p>I love to talk Firebase. Hit me up in the comments, on <a href="http://twitter.com/chrisesplin">Twitter</a> or on the new <a href="https://firebase-community.appspot.com/">Firebase Slack Channel</a> 😍. I’ve tried to keep these examples simple. I know this stuff can get much more sophisticated, so hit me up with your nastiest questions and I’ll do my best.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

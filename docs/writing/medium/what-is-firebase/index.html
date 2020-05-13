@@ -1,0 +1,223 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ChrisEsplin.com</title>
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">What is Firebase?</span>
+        </div>
+        <div class="subtitle text-bold">Firebase is a Backend-as-a-Service — BaaS — that started as a YC11 startup and grew up into a next-generation app-development platform on Google Cloud Platform.</div>
+
+        <span class="date">2016/10/24</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>I’ve been using Firebase since 2013. I was late to the game :)</p>
+<p>I use Firebase to power my family’s business, <a href="https://www.calligraphy.org">Calligraphy.org</a>. I also use it for <em>everything</em> I’ve developed in the last three years.</p>
+<p>Firebase frees developers to focus crafting fantastic user experiences. You don’t need to manage servers. You don’t need to write APIs. Firebase is your server, your API and your datastore, all written so generically that you can modify it to suit most needs. Yeah, you’ll occasionally need to use other bits of the Google Cloud for your advanced applications. Firebase can’t be everything to everybody. But it gets pretty close.</p>
+<p>Watch the video below for my 8-minute, in-depth opinion on why I love Firebase, what it does, what it **doesn’t **do and how to think about Firebase in the context of your app’s architecture.</p>
+<p>So what is Firebase?</p>
+<h3><strong>It’s a Realtime Database</strong></h3>
+<p>Real-time data is the way of the future. Nothing compares to it.</p>
+<p>Most databases require you to make HTTP calls to get and sync your data. Most databases give you data only when you ask for it.</p>
+<p>When you connect your app to Firebase, you’re not connecting through normal HTTP. You’re connecting through a WebSocket. WebSockets are <a href="http://www.websocket.org/quantum.html">much, much faster than HTTP</a>. You don’t have to make individual WebSocket calls, because one socket connection is plenty. All of your data syncs automagically through that single WebSocket as fast as your client’s network can carry it.</p>
+<p>Firebase sends you new data as soon as it’s updated. When your client saves a change to the data, all connected clients receive the updated data almost instantly.</p>
+<h3><strong>It’s File Storage</strong></h3>
+<p>Firebase Storage provides a simple way to save binary files — most often images, but it could be anything — to Google Cloud Storage <strong>directly from the client!!!</strong></p>
+<p>Firebase Storage has it’s own system of security rules to protect your GCloud bucket from the masses, while granting detailed write privileges to your authenticated clients.</p>
+<h3>It’s Authentication</h3>
+<p>Firebase auth has a built in email/password authentication system. It also supports OAuth2 for Google, Facebook, Twitter and GitHub. We’ll focus on email/password authentication for the most part. Firebase’s OAuth2 system is well-documented and mostly copy/paste.</p>
+<p>If you’ve ever written an authentication system, let’s commiserate for a moment. Custom authentication is terrible. I will never write an auth system again for as long as I live. I fell in love with Firebase Auth at first sight, and the flame has never wavered. Sometimes I get frustrated. Sometimes we fight. But I never forget the cold, dark abyss of a custom auth system. I count my blessings.</p>
+<p>Oh, and Firebase Auth integrates directly into Firebase Database, so you can use it to control access to your data. I’m writing this as if it’s an afterthought. It’s not. It’s the second reason that you will love Firebase Auth.</p>
+<h3><strong>It’s Hosting</strong></h3>
+<p>Firebase includes an easy-to-use hosting service for all of your static files. It serves them from a global CDN with HTTP/2.</p>
+<p>And to make your development particularly painless, Firebase hosting utilizes <a href="https://github.com/firebase/superstatic">Superstatic</a>, which you can run locally for all of your testing. I run Superstatic as <a href="https://www.browsersync.io/">BrowserSync</a> middleware. The following implementation uses Gulp, but Gulp is purely optional.</p>
+<p>The BrowserSync + Superstatic development environment is slick. BrowserSync handles reloading your development app across all connected devices and Superstatic replicates Firebase hosting locally in such a way that you can deploy straight to Firebase for production use.</p>
+<h3><strong>It’s a Fully-Featured App Platform</strong></h3>
+<p>The Firebase team has integrated a bunch of new and existing Google products with Firebase. I don’t plan to cover these features in detail quite yet…</p>
+<p>A bunch of these features apply to iOS and Android but not to web.</p>
+<ul>
+<li>
+<p>Remote Config</p>
+</li>
+<li>
+<p>Test Lab</p>
+</li>
+<li>
+<p>Crash</p>
+</li>
+<li>
+<p>Notifications</p>
+</li>
+<li>
+<p>Dynamic Links</p>
+</li>
+<li>
+<p>AdMob</p>
+</li>
+</ul>
+<h2>Firebase Pros &amp; Cons</h2>
+<p>It’s not all roses.</p>
+<p>I mean, it’s mostly roses, but watch the thorns.</p>
+<h3>Pros</h3>
+<ul>
+<li>
+<p>Email &amp; password, Google, Facebook, and Github authentication</p>
+</li>
+<li>
+<p>Realtime data</p>
+</li>
+<li>
+<p>Ready-made api</p>
+</li>
+<li>
+<p>Built in security at the data node level</p>
+</li>
+<li>
+<p>File storage backed by Google Cloud Storage</p>
+</li>
+<li>
+<p>Static file hosting</p>
+</li>
+<li>
+<p>Treat data as streams to build highly scalable applications</p>
+</li>
+<li>
+<p>Don’t worry about your infrastructure!</p>
+</li>
+</ul>
+<h3>Cons</h3>
+<ul>
+<li>
+<p>Limited query abilities due to Firebase’s data stream model</p>
+</li>
+<li>
+<p>Traditional relational data models are not applicable to NoSQL; therefore, your SQL chops will not transfer</p>
+</li>
+<li>
+<p>No on-premise installation</p>
+</li>
+</ul>
+<h2><strong>How To Firebase: From Beginner to App Architect</strong></h2>
+<p>My goal for <strong>How To Firebase</strong> is to teach Firebase to new and experienced Firebase developers. I’m covering everything, and I’m taking questions from all comers.</p>
+<p>I’m covering the latest, greatest version of the Firebase SDK. This is not the stale content you’ll find abandoned across the web.</p>
+<p>Subscribe to this Medium publication for written walkthroughs. Also subscribe to my <a href="https://www.youtube.com/playlist?list=PLdssc-pDiZ7MJeKr4k5r33jCGOT2H_iKB">live-coding screencasts on YouTube</a> for the freshest Firebase screencasts out there.</p>
+<h2>Resources</h2>
+<p>I don’t pretend to know everything. These are the people and feeds that I follow to keep up-to-date on the state of Firebase.</p>
+<h3><a href="https://firebase.google.com/docs/">The Docs</a></h3>
+<p>Start with the docs. Always. They’re un-opinionated and won’t help you much with your app structure, but they’ve got great code examples for implementing individual features.</p>
+<h3><a href="https://www.youtube.com/user/Firebase"><strong>Firecasts</strong>: The official Firebase YouTube channel</a></h3>
+<p>Firecasts is an official Google production. It covers core Firebase features, and the presenters know their topics cold. Of course, as an official Google channel, it focuses on Google products. You won’t find much discussion of Firebase’s weaknesses or how Firebase fits into the broader dev ecosystem.</p>
+<h3><a href="https://firebase.googleblog.com/">The Firebase Blog</a> and <a href="https://twitter.com/firebase">@Firebase</a></h3>
+<p>This may be obvious, but follow <a href="https://firebase.googleblog.com/">The Firebase Blog</a> and <a href="https://twitter.com/firebase">@Firebase</a> on Twitter for new releases and community updates.</p>
+<h3><a href="http://stackoverflow.com/users/209103/frank-van-puffelen">Frank van Puffelen (Puf) on StackOverflow</a></h3>
+<p>Puf might correct me on this, but my understanding is that he was so active on Firebase topics on StackOverflow that the Firebase team offered him a job. He’s been with Firebase since well before the Google acquisition. Puf’s StackOverflow answers should be your starting point for Firebase troubleshooting.</p>
+<p><a href="https://twitter.com/puf">@Puf</a> is a great Twitter follow as well :)</p>
+<h3><a href="https://twitter.com/_davideast">David East</a>, Developer Advocate</h3>
+<p>David has been on the Firebase team since forever. He’s currently a developer advocate. He’s got a great Twitter feed—<a href="https://twitter.com/_davideast">@_davideast</a>—and you’ll see him on the <a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLkkCFs6T9mlqG8v6NCs38pA">#askFirebase</a> YouTube vids. You can also catch glimpses of him skating if you wander around San Francisco enough.</p>
+<h3><a href="https://firebase.googleblog.com/2016/02/come-join-firebase-slack-community_13.html">Firebase Slack</a></h3>
+<p>If I’m truly stumped and I can’t find an answer on Puf’s StackOverflow feed, my next stop is the #needhelp channel on <a href="https://firebase-community.slack.com/">firebase-community.slack.com</a>. The Firebase team and a bunch of community experts field questions and chat about architecture, features, troubleshooting, etc.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

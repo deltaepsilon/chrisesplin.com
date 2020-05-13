@@ -1,0 +1,190 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ChrisEsplin.com</title>
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Firebase Authentication for Web</span>
+        </div>
+        <div class="subtitle text-bold">The quickest auth implementation ever</div>
+
+        <span class="date">2016/12/06</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>Firebase Authentication is necessary to grant read/write privileges to your users via security rules. We haven’t covered security rules yet, but just know that security rules rely on a users’ authentication status.</p>
+<p>Firebase ships with its own email/password auth as well as OAuth2 integrations for Google, Facebook, Twitter and GitHub. You can also integrate your own proprietary auth systems with Firebase Authentication to grant users access to data without forcing them to create an account outside of your existing systems.</p>
+<p>Firebase also allows for anonymous auth sessions, which are typically used to persist small amounts of data while waiting for a client to authenticate with a permanent auth method. These anonymous sessions can be configured to last days, weeks, months, even years… until the user logs in with a permanent login method or clears her browser cache. Web apps often use local datastores like sessionStorage or localStorage to accomplish similar tasks. For example, a shopping cart application could create an anonymous auth session for every user who adds something to his or her cart. The shopping cart app would prompt the user to create a user account for checkout, at which point the cart would be persisted to the new user’s account and the anonymous session would be destroyed.</p>
+<h2>Firebase User System</h2>
+<p>Firebase Auth includes a user management system. You can save some basic data against your Firebase Auth users, and you offer multiple login methods — email/password, Google, Facebook… — and link your users’ accounts into single Firebase Auth user accounts. Auth also provides for integrations into your pre-existing auth system so that your app can take advantage of Firebase’s security rules.</p>
+<p>Firebase Auth provides an observer for auth changes:</p>
+<pre><code>
+firebase.auth().onAuthStateChanged(function(user) {
+ window.user = user; // user is undefined if no user signed in
+});
+</code></pre>
+<p>The above example keeps <em>window.user</em> in sync with your Firebase Auth user. <em>user</em> will be undefined if the user is not logged in.</p>
+<p>You can also manipulate your current user. You obtain your current user with <em>firebase.auth().currentUser</em>, which looks like the object below 👇, but with a bunch of extraneous Firebase attributes that you’ll never use and don’t need to know.</p>
+<pre><code>{
+ displayName: null,
+ email: “[chris@quiver.is](mailto:chris@quiver.is)”,
+ emailVerified: false,
+ isAnonymous: false,
+ photoURL: null,
+ providerData: {
+  refreshToken: “ANflqpEVNvT4iOyKVVRyybjcuwKqnca…”,
+  uid: “P1yjH4GgcFQcJUHULmTgMLC68w64”
+ },
+ refreshToken: “ANflqpEVNvT4iOyKVVRyybjcuwKqnca…”,
+ uid: “P1yjH4GgcFQcJUHULmTgMLC68w64”
+}
+
+</code></pre>
+<p>Other OAuth providers such as Google and Facebook will give you more data in your <em>providerData</em> node depending on the scopes that you ask your users to approve.</p>
+<p>You can also use the following functions — all of which return promises — to manipulate your user:</p>
+<h3>Email/Password</h3>
+<p>Email/password auth has functions to register new users, sign in existing users and sign out a signed-in user. All functions return promises, and new user registration automatically signs in the user. All three functions trigger the <code>onAuthStateChanged</code> observer… so you should be handling successful auth changes in the handler instead of with the promises that these functions return.</p>
+<h3>Google Sign In</h3>
+<p>Review the <a href="https://firebase.google.com/docs/auth/web/google-signin#before_you_begin">Google Sign-In docs</a>. They’re better than anything that I could write up here, and Google will keep them up to date.</p>
+<p>My only notes are that you need to continue using the <em>onAuthStateChanged</em> observer as before, and make sure to add <a href="https://developers.google.com/identity/protocols/googlescopes#google_sign-in">some scopes</a>:</p>
+<h3>Facebook/Twitter/GitHub/Custom Auth</h3>
+<p><a href="https://firebase.google.com/docs/auth/web/facebook-login#before_you_begin">See the docs</a> and follow the same patterns as before.</p>
+<h3>Anonymous Auth</h3>
+<p>You can automatically sign in your user anonymously to create a sort of Firebase-persisted session.</p>
+<pre><code>firebase.auth().signInAnonymously()
+ .catch(function(error) {
+  // Handle errors
+ });
+</code></pre>
+<p>Signing a user in anonymously will fire off the <em>onAuthStateChanged</em> observer as before, but this time the <em>currentUser</em> will be a bit bare:</p>
+<p><strong>Anonymous currentUser Object</strong></p>
+<pre><code>{
+ displayName: null,
+ email: null,
+ emailVerified: false,
+ isAnonymous: true,
+ photoURL: null,
+ providerData: {},
+ refreshToken: “ANflqpEVNvT4iOyKVVRyybjcuwKqnca…”,
+ uid: “P1yjH4GgcFQcJUHULmTgMLC68w64”
+}
+</code></pre>
+<p>Anonymous auth is useful in narrow situations where you need to authenticate users to utilize security rules and possibly convert those anonymous users to permanent, authenticated users later in your on-boarding process. The big catch is that you can link only one anonymous account to an authenticated account. So if your user logs out and follows the same on-boarding flow a second time, your account link will fail the second time and you’ll need to handle it manually.</p>
+<h3>Auth Service Linking</h3>
+<p>Many modern applications offer multiple login methods such email/password, Google and Facebook. Users tend to forget how they logged in the last time they used the app, so Firebase allows us to link multiple authentication methods. For example, if you create an email/password account and then log in with Google from a different device, you can prompt your user to log in with an existing email/password combination to link the two accounts together on your Firebase.</p>
+<p>Linked auth accounts share a single <em>unique identifier</em> (a.k.a. uid) and will show up as a single user entry on Firebase’s Auth console page.</p>
+<p>Your user will need to be signed in with an auth provider before linking, be it anonymous, email/password or an OAuth provider. Once your user is logged in, the <em>firebase.auth().currentUser</em> will represent that logged in user, which is now ready to be linked. Next obtain a credential from your new auth provider. If the second auth provider is email/password, you can obtain a credential without actually logging in, which prevents <em>firebase.auth().currentUser</em> from being overwritten with the new auth user; however, if your second auth method is an OAuth provider such as Google or Facebook, your <em>currentUser</em> will be overwritten by the second authentication process. You’ll need to save the <em>currentUser</em> from your first authentication to a local variable, because you’ll no longer be able to access it from <em>firebase.auth().currentUser</em>.</p>
+<p><strong>Quirk Alert</strong></p>
+<p>There’s an interesting quirk when using email/password as your second authentication method. You can obtain an email/password credential without logging in the user or even registering an account, so linking an email/password credential to an existing user will automatically register a new email/password account. Make sure to thoroughly test this sort of linking to make sure that you’re handling all possible cases… there are a lot of account linking permutations to track.</p>
+<h2>Exercise</h2>
+<p>Navigate to the Auth tab on your project from the <a href="https://console.firebase.google.com/">Firebase Console</a>. You shouldn’t have any users configured, but they’ll show up on this first screen once you do. Click the “SIGN IN METHOD” tab and enable the Email/Password and Anonymous sign in providers. We’ll use only Email/Password and Anonymous. You’ll need OAuth tokens to enable the other providers, and while the tokens aren’t difficult to gather, the other auth systems work almost identically to Email/Password.</p>
+<p>The trickiest part of Firebase Auth is linking users. You can potentially link all different auth providers into a single user account. The biggest caveat is that anonymous auth accounts can only be linked to an existing account once. If you’ve linked an anonymous account to any other login method, that login method can no longer be linked to anonymous accounts. You’ll have to handle merging the data manually. This is a pretty big weakness for anonymous accounts and suggests that managing temporary sessions in localStorage may be smarter.</p>
+<p>Create an *<em>.html</em> file and copy/paste the code below into it.</p>
+<p>You’ll need to add your firebase configuration details and then follow Step 1 and Step 2 as outlined in the code comments.</p>
+<p>This is a very minimal demo on how to configure Firebase auth, but production implementations will not be much more complicated. If you’re having trouble, make sure to struggle with this a bit before looking up the completed demo. The Firebase docs are generally excellent and you’ll want to sit down and read them carefully whenever you run into a tricky implementation.</p>
+<p>This exercise suggests a method of handling authentication where every session gets an anonymous account and new accounts are linked to the anonymous account instead of being registered separately. If the accounts haven’t been linked, a new account is registered automatically, which is a fun quirk of account linking; registering a new account is not strictly necessary with this model… linking gets the job done.</p>
+<p>The catch is that linking fails if an account has already been linked, in which case we can simply log in with the existing account. The anonymous account gets lost in this case. So tough luck on that one… maybe try localStorage if you need to hang on to that anonymous data. I’ve had great success storing shopping cart data in localStorage rather in Firebase, because localStorage persists across authentication changes. I only persist the cart to Firebase once the user checks out. It’s a nice end run around anonymous data persistence issues.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  
