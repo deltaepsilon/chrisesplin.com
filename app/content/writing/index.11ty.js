@@ -17,6 +17,11 @@ module.exports = class Writing {
 
     return String.raw`
       <style>
+        .writing ul {
+          list-style: none;
+          padding: 0;
+        }
+
         .medium-link {
           display: flex;
           justify-content: space-between;
@@ -24,11 +29,14 @@ module.exports = class Writing {
           margin-bottom: 1em;
         }
       </style>
-      <h3>Medium Articles</h3>
+      
+      <div class="writing">
+        <h3>Medium Articles</h3>
 
-      <ul>
-        ${links.map((link) => String.raw`<li>${link}</li>`).join('')}
-      </ul>
+        <ul>
+          ${links.map((link) => String.raw`<li>${link}</li>`).join('')}
+        </ul>
+      </div>
     `;
   }
 };

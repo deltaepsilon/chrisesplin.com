@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: BUNCHES
+title: Bunches
 ---
 
 ### Project Summary

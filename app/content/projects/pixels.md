@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: PIXELS
+title: Pixels
 ---
 
 ### Project Summary

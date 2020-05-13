@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: YOUTUBE
+title: YouTube
 ---
 
 ### Project Summary

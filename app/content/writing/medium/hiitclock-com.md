@@ -31,7 +31,7 @@ My latest project, [HiiTClock.com](https://www.hiitclock.com), forced me to addr
 
 ## What is HiiT Clock?
 
-HiiT stand for [**high-intensity interval training](https://en.wikipedia.org/wiki/High-intensity_interval_training)**. It’s a popular way to get fast and strong, used across a variety of sports such as running, cycling, CrossFit and football. The idea is that you perform a very intense movement, such as sprinting 100 meters or pushing a weighted sled. Then you rest for a set duration… then repeat, again and again and again. By tuning the work/rest intervals, you can extract maximum performance from your body in a short period of time.
+HiiT stands for **[high-intensity interval training](https://en.wikipedia.org/wiki/High-intensity_interval_training)**. It’s a popular way to get fast and strong, used across a variety of sports such as running, cycling, CrossFit and football. The idea is that you perform a very intense movement, such as sprinting 100 meters or pushing a weighted sled. Then you rest for a set duration… then repeat, again and again and again. By tuning the work/rest intervals, you can extract maximum performance from your body in a short period of time.
 
 More sophisticated HiiT routines often involve a rotating circuit of movements, giving the body time to recover, and enabling the athlete to continue working hard for a longer time period.
 

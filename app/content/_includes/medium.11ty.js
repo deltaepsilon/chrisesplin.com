@@ -30,7 +30,7 @@ module.exports = class Medium {
           margin-top: 1em;
         }
 
-        .medium em {
+        .medium img ~ em {
           display: block;
           font-size: 0.75em;
           text-align: center;

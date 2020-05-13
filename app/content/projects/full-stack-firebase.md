@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: FULL_STACK_FIREBASE
+title: Full-Stack Firebase
 ---
 
 ### Project Summary

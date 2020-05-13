@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: HIIT_CLOCK
+title: HIIT Clock
 ---
 
 ### Project Summary

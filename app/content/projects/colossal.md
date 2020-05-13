@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: COLOSSAL
+title: Colossal
 ---
 
 ### Project Summary

@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: CALLIGRAPHY
+title: Calligraphy
 ---
 
 ### Project Summary

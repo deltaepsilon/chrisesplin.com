@@ -1,6 +1,7 @@
 ---
 layout: project
 projectKey: HOW_TO_FIREBASE
+title: How To Firebase
 ---
 
 ### Project Summary
@@ -13,6 +14,6 @@ Medium is great for discovery, but it puts a paywall up in front of my content, 
 
 ### Technology
 
-How To Firebase covers basic Firebase best practices starting in 2016. Most of the articles are older and cover older practices. 
+How To Firebase covers basic Firebase best practices starting in 2016. Most of the articles are older and cover older practices.
 
 [Full Stack Firebase](https://www.fullstackfirebase.com/) is my follow-up that covers the Firebase APIs as of 2018.
