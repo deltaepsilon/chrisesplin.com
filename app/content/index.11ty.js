@@ -20,7 +20,7 @@ module.exports = class Index {
       <h3>Writing</h3>
 
       <p>
-          I'm <a href="/writing">compiling my writing</a>.
+          I'm <a href="/writing">compiling my writing</a>. I startup life has me busy.
       </p>
 
       <h3>Resume / Consulting</h3>
