@@ -61,7 +61,7 @@ async function getLinks() {
   const links = mdData
     .sort((a, b) => (a.attributes.date < b.attributes.date ? 1 : -1))
     .map(({ attributes }) => {
-      const dateString = formatDate(attributes.date);
+      const dateString = attributes.date ? formatDate(attributes.date) : '';
 
       return String.raw`
         <a class="medium-link" href="/writing/medium/${attributes.slug}"> 
