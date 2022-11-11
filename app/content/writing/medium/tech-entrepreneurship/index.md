@@ -37,7 +37,7 @@ The moral of the story is two-fold.
 
 ## My story
 
-The gist of my story is that I desperately want to be a successful entrepreneur. I always have. I've started a few businesses. I've launched a bunch of apps. And while the individual attempts have mostly failed, the broader course of my career has been quite successful.
+The gist of my story is that I desperately want to be a successful entrepreneur. I always have. I've started a few businesses. I've launched a bunch of apps. And while the individual attempts have mostly failed, the broader course of my career has been successful.
 
 Let's start with the losses. All of these hurt. All of them cost months or years of productive time.
 
@@ -46,14 +46,14 @@ Let's start with the losses. All of these hurt. All of them cost months or years
 1. Zeepers was a zipper purse business with a college friend where we manufactured zipper purses and sold about five of them.
 2. I earned a 4-year degree at BYU, double-majoring in economics and finance. I graduated Magna Cum Laude and proceeded to face plant at my first job out of college as an economic analyst. My personality is a total mismatch for that field. They fired me after about a year.
 3. I started ScorpionSurival.com, an online dropshipping business where I sold prepper gear like knives, flashlights and emergency blankets. I sold about $50k in product over a year and lost money.
-4. After transitioning to software engineering, I did a bunch of freelancing. While it was profitable, I could never get enough work to support myself and eventually had to quit.
+4. I tried my hand at freelancing after I'd transitioned to software engineering. Freelancing was profitable, but I could never get enough work to support myself and eventually I had to quit.
 5. I got fired from my first dev job. Not because I was a bad dev, but because I had picked a horrible company to work for. They were getting sued by their clients and went out of business shortly thereafter.
 6. I've launched about four web apps that have gone no where. The most successful is a workout timer with a few hundred casual users, none of whom click on ads or pay for anything.
 7. I tried to build a business around Firebase, becoming a Firebase influencer online, writing a ton of Firebase-related content, giving talks and building up a YouTube channel. I even launched a Udemy course. It's been a ton of fun. I will use Firebase forever, and I still participate in the space... but there's zero money in it for me.
 
 That list was painful to write out. I don't think about those experiences very often. They feel a little embarrassing, even though I know they shouldn't be. I just don't identify with my failures. I'd much rather dwell on the handful of wins.
 
-The list of wins is much shorter.
+The list of wins is shorter.
 
 ### Wins
 
@@ -118,6 +118,11 @@ Learn from the wins and the losses.
 
 Your local plumber or lawn guy runs a bootstrapped business. MailChimp was bootstrapped. So are a lot of Amazon and eBay sellers. The software world is chock full of bootstrapped success stories, but you seldom hear them, because they're selling business-to-business software in some weird niche that you've never heard of. They could be making millions, and only their customers know their names.
 
+## Overnight success, a decade in the making
+
+Some folks are naturals. They take to it at a young age and have all the right instincts. The rest of us have to accumulate hard-won experience for years and often decades before we're ready for a big win.
+
+And sometimes we just get lucky. Don't take lessons from others' luck. If a thousand untalented people try to start businesses, a few of them will be successful their first try. They'll likely turn into one-hit wonders if they can't buckle down like the rest of us, grind it out for ten years and earn the experience they need for a second big win.
 
 ## Philosophical component
 
