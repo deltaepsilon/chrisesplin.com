@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>MILDLY SECRET&#58; Custom Claims</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">MILDLY SECRET&#58; Custom Claims</span>
+        </div>
+        <div class="subtitle text-bold">I’d like to talk about my favorite feature of Firebase Authentication.</div>
+
+        <span class="date">2018/07/23</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>You probably haven’t heard of it, because it’s buried in one of the “getting started” guides in the Firebase docs and nobody reads ALL OF THE DOCS!</p>
+<p>I only discovered <a href="https://firebase.google.com/docs/auth/admin/custom-claims">custom claims </a>when I complained about the lack of user role management.</p>
+<p>I mean, if I want to tag a user as an admin, do I have to make a database entry? Because if that’s the case, I have to query the database every time I authenticate a user and while I’ve done that for a long time… it’s a slow, cumbersome operation.</p>
+<p>So I was whining, I can’t remember if it was online or at a Firebase event and a Firebase team member mentioned Custom Claims as an easy solution to my problem.</p>
+<p>Why is this feature hidden!!!</p>
+<p>Every Firebase app should be using Custom Claims, and it’s buried deep in the docs!</p>
+<p>Any non-trivial app eventually needs user roles. I need to mark users as administrators or managers or moderators or just plain paid-up users. And Custom Claims allows me to set simple user attributes directly on my user’s JWT.</p>
+<p>A JWT is a Json Web Token, which is the <strong>currentUser</strong> object in Firebase Authentication.</p>
+<p>So every time I authenticate on the client I get a currentUser JWT, and if I’ve set custom claims on my user, I can extract the custom claims from the user JWT.</p>
+<p>I have a sample Cloud Function that does just this, <a href="https://github.com/deltaepsilon/firebase-ssr-starter/blob/master/functions/src/authorization-on-create.js">so check out that link</a>.</p>
+<p>So let’s talk through that code and I’ll show it all in action.</p>
+<p>We’ll get started with my Cloud Function called <strong>authorizationOnCreate</strong>.</p>
+<p><strong>authorizationOnCreate</strong> is triggered by new user creation in Firebase Authentication.</p>
+<p>I’m saving all of my custom claims data by user email address in the Realtime Database, so the first thing to do is to get that data from the RTDB.</p>
+<p>Once I have the relevant claims data for my user, I just need to set it.</p>
+<p>That’s an easy call to <strong>firebase.auth.setCustomUserClaims()</strong>.</p>
+<p>I just pass in the user’s UID that I get from the JWT and the claims object.</p>
+<p>The claims object can be anything really, but it must be under 1000 bytes, and you should only use it for access-control.</p>
+<p>There are performance implications to trying to save too much data in a custom claim, so just follow best-practices and keep that sort of data in the RTDB or Firestore.</p>
+<p>In this case I want to set <strong>isAdmin</strong> and <strong>isModerator</strong> flags on my user.</p>
+<p>I developed this Cloud Function with test-driven development methodologies, so I am very proud to say that it worked the very first time I deployed it.</p>
+<p>To prove that this works, I’ll go ahead and delete my user from Firebase Authentication.</p>
+<p>Now I’ll register a new user and we can see that the claims are not there yet.</p>
+<p>I can refresh my page and the claims still won’t be there…</p>
+<p>…so I’ll have to sign out and sign back in…</p>
+<p>…and there they are.</p>
+<p>My <strong>isAdmin</strong> and <strong>isModerator</strong> flags are set and I’m ready to start writing my admin dashboard.</p>
+<p>I’m getting my custom claims data by calling <strong>currentUser.getIdTokenResult()</strong>.</p>
+<p>It’s an async function that returns an <strong>idTokenResult</strong>. The <strong>idTokenResult</strong> has a claims attribute with the custom claims as children.</p>
+<p>Getting and setting custom claims is dead simple. All of the complexity comes from writing the Cloud Function to do it, so go ahead and copy/paste my function to get started!</p>
+<p>I write very opinionated Cloud Functions code… so take my code with a grain of salt.</p>
+<p>You don’t need to complicate your Cloud Functions as much as I do.</p>
+<p>Go ahead and keep it simple, and I hope you love custom claims.</p>
+<p>They’re fantastic.</p>
+<p>I’m just mad that it took me so long to find them.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

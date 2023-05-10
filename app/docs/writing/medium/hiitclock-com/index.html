@@ -1,0 +1,238 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>HiiTClock.com</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">HiiTClock.com</span>
+        </div>
+        <div class="subtitle text-bold">Redux + Firebase + localStorage for offline-first support</div>
+
+        <span class="date">2017/02/06</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>I spend a lot of time advocating for Firebase. I’ve been Firebase-monogamous since 2014, when I kissed the last of my MySQL code goodbye and good riddance.</p>
+<p>I get a few questions over and over again regarding Firebase</p>
+<ol>
+<li>
+<p>How do you search Firebase collections?</p>
+</li>
+<li>
+<p>Does Firebase have offline support for web?</p>
+</li>
+</ol>
+<p>My latest project, <a href="https://www.hiitclock.com">HiiTClock.com</a>, forced me to address both of those issues head on.</p>
+<h2>What is HiiT Clock?</h2>
+<p>HiiT stands for <strong><a href="https://en.wikipedia.org/wiki/High-intensity_interval_training">high-intensity interval training</a></strong>. It’s a popular way to get fast and strong, used across a variety of sports such as running, cycling, CrossFit and football. The idea is that you perform a very intense movement, such as sprinting 100 meters or pushing a weighted sled. Then you rest for a set duration… then repeat, again and again and again. By tuning the work/rest intervals, you can extract maximum performance from your body in a short period of time.</p>
+<p>More sophisticated HiiT routines often involve a rotating circuit of movements, giving the body time to recover, and enabling the athlete to continue working hard for a longer time period.</p>
+<p>I do a lot of HiiT-style workouts, particularly when I’m training for CrossFit. I haven’t been able to find an easy-to-use, yet powerful timer solution to keep my workouts on track. CrossFit gyms traditionally use a whiteboard and a single clock, with athletes watching the clock and the whiteboard, doing a bit of math in their head to figure out the next movement. I’ve used a bunch of timer apps over the years, but they’ve all bothered me in one way or another.</p>
+<p>HiiT Clock lets users program their entire HiiT circuit into the app and save it for later. HiiT Clock also enables casting timers to a television with Chromecast, Apple AirPlay, or a mirrored web page. It also has audio queues that are especially useful when running with headphones.</p>
+<h2>HiiT Clock Stack</h2>
+<p>HiiT Clock uses a bunch of technologies. Here are a few.</p>
+<ul>
+<li>
+<p><a href="https://www.polymer-project.org/1.0/">Polymer</a></p>
+</li>
+<li>
+<p><a href="http://redux.js.org/">Redux</a> with <a href="https://github.com/tur-nr/polymer-redux">&lt;polymer-redux&gt;</a></p>
+</li>
+<li>
+<p><a href="https://firebase.google.com/docs/web/setup">Firebase</a></p>
+</li>
+<li>
+<p><a href="https://www.algolia.com/">Algolia</a> with <a href="https://github.com/deltaepsilon/firebase-search">firebase-search</a></p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">serviceWorker</a></p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage">localStorage</a></p>
+</li>
+<li>
+<p><a href="https://d3js.org/">d3.js</a></p>
+</li>
+<li>
+<p><a href="https://developers.google.com/cast/docs/chrome_sender_setup">Chromecast sender &amp; receiver SDKs</a></p>
+</li>
+<li>
+<p><a href="https://developers.google.com/web/progressive-web-apps/">Progressive Web App</a></p>
+</li>
+<li>
+<p><a href="https://nodejs.org/en/">Node.js</a> with <a href="https://github.com/firebase/firebase-queue">firebase-queue</a></p>
+</li>
+</ul>
+<p>The key innovation with HiiT Clock is that it’s a Progressive Web App or PWA. PWAs are build to be offline-first, using serviceWorker to cache the entire page. They’re also made to save to a phone’s home screen and act exactly like a native app on any Android phone. They can work on iOS as well, but iOS has inferior support for PWA features, so PWA apps end up acting more like regular web apps when used in Safari. But they still work just fine, which is why they’re “progressive”.</p>
+<p>If you have an Android phone or tablet, try saving <a href="https://www.hiitclock.com">HiiT Clock</a> to your home screen. When saved to the home screen, PWAs can look 100% native. The only hints that they’re web apps is that they all have pull-to-refresh just like any Android Chrome tab, and when you try to uninstall the app, you get the <strong>remove</strong> option but no <strong>uninstall</strong> option. You can put your phone in airplane mode, refresh the page, and it should continue to work seamlessly.</p>
+<h2>Don’t try to search Firebase. Use Algolia instead.</h2>
+<p>It <em>is</em> possible to hack together some basic search for Firebase. It’s usually heavy on client-side logic, and it usually involves downloading entire collections.</p>
+<p>Skip the pain and use <a href="https://www.algolia.com/">Algolia</a> instead. Algolia is a dedicated search-as-you-type, 1ms response-time search solution. You won’t do better than Algolia for performance or ease of use.</p>
+<p>We all wish that Google would just purchase Algolia already and roll their incredible search directly into Firebase, but until that unlikely-yet-hoped-for day, I’ve got an NPM module that can help.</p>
+<pre><code>npm install --save quiver-firebase-search
+</code></pre>
+<p>My module is named <a href="https://github.com/deltaepsilon/firebase-search">firebase-search</a>. Someone else already registered firebase-search on npm, so you’ll need to install quiver-firebase-search… but once you’ve got it installed, it’s just firebase-search.</p>
+<p>Firebase Search takes two arguments, a Firebase collection ref and a config object. Firebase Search will keep your Algolia or Elasticsearch index synced to your Firebase collection ref. Problem solved.</p>
+<h2>Use Redux + localStorage for offline</h2>
+<p>I’ve heard tell that Firebase has great offline support for iOS and Android. But I don’t care. I’m developing a <a href="https://developers.google.com/web/progressive-web-apps/">progressive <em>web</em> app</a>. I need offline-first for JavaScript, and Firebase doesn’t give that to me out of the box.</p>
+<p>Enter <a href="http://redux.js.org/">Redux</a>. Most devs think that Redux is build for React. False! Redux is built for JavaScript. Polymer is JavaScript. I use Redux with the fantastic <a href="https://github.com/tur-nr/polymer-redux">&lt;polymer-redux&gt;</a> element. Whenever you’re thinking to yourself, “I wish there were a better way to handle my app’s state…”, try Redux. You will not be disappointed.</p>
+<p>One of the criticisms of Polymer is that it allows two-way data binding. Well surprise! Polymer also allows one-way data binding. And Redux is all about one-way data binding, so they’re a perfect match.</p>
+<blockquote>
+<p>Shh!
+A little known secret about Polymer is that two-way data binding is totally useful. Don’t tell anyone about my heresy… but I mix one- and two-way binding in my apps!!! Some trivial bits of data don’t need to be saved as app state, like if a sub-component’s checkbox is checked. So use two-way binding for the trivial stuff that you can lose between page reloads, and use one-way binding for the state that you care about.</p>
+</blockquote>
+<h2>Redux + localStorage == Offline Support</h2>
+<p>Here’s where it gets fun. Redux allows for simple offline-support with localStorage. You merely subscribe to your Redux store and save your stringified state to localStorage, and when you first load an empty state, you check localStorage to see if your client has a saved state, and swap your empty state for the localStorage version. Piece of cake. Here’s the code for that.</p>
+<pre><code>var store = Redux.createStore(function (state, action) {
+  if (action.type == '@@redux/INIT') {
+    try {
+      state =JSON.parse(localStorage.getItem('QuiverStoreState'));
+    } catch (err) {
+      console.log('localStorage error', err);
+    }
+   }
+
+   if (!state) { // Handle empty localStorage + undefined
+      state = {//Some default state}
+   }
+
+  // The rest of your reducer
+
+});
+
+store.subscribe(function () {
+ localStorage.setItem(‘QuiverStoreState’, JSON.stringify(store.getState()));
+ });
+</code></pre>
+<h2>Redux + Firebase == Online Persistence</h2>
+<p>This is where it gets tricky. Once you have your app state fully offline and happy with Redux and localStorage, it’s time to start syncing to Firebase.</p>
+<p>This is step is entirely app-specific.</p>
+<p>HiiT Clock allows users to create their own interval timers which they can then play on-screen with a visual countdown graphic. I chose to sync only the users’ timer collections to Firebase. The rest of HiiT Clock’s data model is self-contained and offline-friendly… it can get blown away by a cache refresh, and I don’t care. But those timers are critical.</p>
+<p>To achieve a Redux-to-Firebase sync, I subscribed to my Redux store and, whenever the timers change, I attempt to sync that data out to Firebase. If the client is offline, the sync fails and I’ll try again later.</p>
+<p>To achieve Firebase-to-Redux sync, I listen to the <strong>value</strong> event on my Firebase ref, and compare all incoming Firebase states to my local Redux state. If I determine that my Firebase state has been updated more recently, I overwrite my local Redux state.</p>
+<p>You’ll have to figure out the data merges yourself. My timers model is simple enough that I use timestamps. Every time Redux updates a timer, I set</p>
+<pre><code>state.updated = Date.now()
+</code></pre>
+<p>So if I see a local state with a more recent <strong>state.updated</strong> value than what’s in Firebase, then I overwrite Firebase with my local state. If the Firebase state is newer, I overwrite my local Redux state.</p>
+<h2>Syncing gets hairy</h2>
+<p>The Redux + localStorage side of this equation was easy. The Redux + Firebase side was not.</p>
+<p>Even with a simplistic timestamp syncing strategy, I got to debug a lot of edge cases where some bits of timer data needed to look differently in Redux than in Firebase, so I had transform that data before syncing it out to Firebase, and I had to transform it back when syncing from Firebase to Redux. You can avoid this issue by using Redux + localStorage + Firebase from the beginning… but I didn’t discover this architecture until my original data model had reached its limit, so I’ll do a better job next time.</p>
+<p>If my Redux-to-Firebase-to-Redux syncing were any more complicated, I would be in real trouble. I suspect this is why Firebase hasn’t attempted to implement an offline solution for web. Deciding which datastore should win is not always simple. I will do much better on my next app. I’ll do the data model first and the UI second. I’ll start with Redux and Firebase, and start syncing that data from the beginning.</p>
+<h2>What do you think?</h2>
+<p>Am I crazy to try to use Redux with Firebase?</p>
+<p>Does this sound like a useful architecture for your apps, or did I just find a niche use case?</p>
+<p>I’m new to the whole offline-first, progressive web app scene. Most everyone is. It’s been incredible, and I’m super happy with my result, but I know that I’ll do better next time. The front-end JavaScript environment is changing so rapidly that the best architecture available today is unlikely to be ideal for your next project. Excellent libraries and features roll out every month, so stay sharp and keep learning!</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

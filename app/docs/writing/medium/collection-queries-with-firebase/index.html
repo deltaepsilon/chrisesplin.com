@@ -1,0 +1,355 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Collection Queries with Firebase</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Collection Queries with Firebase</span>
+        </div>
+        <div class="subtitle text-bold">Stop querying your entire Firebase collection!</div>
+
+        <span class="date">2016/10/26</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <h3>Prerequisites</h3>
+<p>Make sure you know how to connect to Firebase and run basic read/write operations before continuing. <a href="https://medium.com/how-to-firebase/save-and-query-firebase-data-ed73fb8c6e3a#.3kom9r5ju">This earlier How to Firebase article</a> will catch you up.</p>
+<h2>Firebase queries</h2>
+<p>Firebase queries are modifications of a ref. So you’ll create a ref as usual, but then you’ll add some query parameters to it. Once you add query parameters to a ref, you can’t take them off or change them… you’d need to create a new ref for that. This is important, because some query parameters are incompatible with one another, and a ref won’t let you add incompatible query parameters. So don’t shy away from creating and recreating refs over and over again to change queries.</p>
+<h3>Pro Tip</h3>
+<p>Query orders are <strong>NOT</strong> respected by the <em>ref.on(‘value’, callback)</em> event. <em>value</em> events return objects as JSON, and JSON does not have ordered children. I know… obnoxious. But that’s JSON for you. If you care to receive your data from Firebase in the specified order, make sure to use <em>ref.on(‘child_added’, callback)</em>, because it will be called once for each existing child, and it will be called in order. So aggregated your children into an array manually, and you’ll have ordered children!</p>
+<h3>Specify how you want to order your query</h3>
+<p>An <em>orderBy</em>* parameter is required for any query. You can’t apply a query range, i.e., <em>startAt(…)</em>, or a query limit, i.e., <em>limitToLast(…)</em>, without first specifying how you want to order your query. So apply <em>orderBy</em>* <strong>first</strong>!</p>
+<p>You have four options for ordering queries:</p>
+<ul>
+<li>
+<p>orderByKey</p>
+</li>
+<li>
+<p>orderByChild</p>
+</li>
+<li>
+<p>orderByPriority</p>
+</li>
+<li>
+<p>orderByValue</p>
+</li>
+</ul>
+<p>The most common ordering method is <em>ref.orderByKey()</em>. It orders the ref’s children by their keys, usually push keys — which order by time.</p>
+<p>The second most common way to order is <em>ref.orderByChild(‘someChildName’)</em>. You’ll need to add a security rule like “<em>.indexOn”: [“someChildNodeName”]</em> for performance reasons if you want to order by a child attribute.</p>
+<p>The less common methods are <em>ref.orderByPriority()</em> and <em>ref.orderByValue()</em>. Priorities aren’t quite deprecated yet, but they should be, because <em>ref.orderByChild</em> makes priority ordering unnecessary. Ordering by value is only relevant if your children are just values and not objects. So if your data structure were something like…</p>
+<pre><code>“animals”: {
+ “lkjdfa”: “chinchilla”,
+ “asdfkl”: “aardvark”,
+ “iouqer”: “gorilla” 
+}
+</code></pre>
+<p>The most common use cases would be as follows:</p>
+<pre><code>// Order users by key, which also orders them by creation timestamp
+usersRef.orderByKey().on(‘child_added’, callback);
+
+// Order users by email. Make sure to include the security rule …
+// users: {“.indexOn”: [“email”]} …
+usersRef.orderByChild(‘email’).equalTo(‘user-i-need-to-find@gmail.com’).once(‘value’).then(…)
+</code></pre>
+<h3>Specify query ranges</h3>
+<p>Query ranges are optional and specify start and end points for your query. You’ve got three options:</p>
+<ul>
+<li>
+<p>startAt</p>
+</li>
+<li>
+<p>endAt</p>
+</li>
+<li>
+<p>equalTo</p>
+</li>
+</ul>
+<p>Use <em>ref.startAt(‘someKey’)</em> with a <em>limitToFirst</em> statement to read from the top of a list (ascending order) and to start somewhere in the middle of the list. Omitting the <em>startAt</em> while using a <em>limitToFirst</em> would cause the query to read from the very top of the list.</p>
+<p>Use <em>ref.endAt(‘someKey’)</em> with a <em>limitToLast</em> statement to read from the bottom of a list (descending order) and to start somewhere in the middle of the list. Omitting the <em>endAt</em> while using a <em>limitToLast</em> would cause the query to read from the very bottom of the list.</p>
+<p>Using <em>ref.equalTo(‘someKey’)</em> is effectively using a <em>startAt</em> and an <em>endAt</em> query combined. You’re not allowed to use more than one of these query range statements on a single ref, so Firebase provides the <em>equalTo</em> range to let you specify both.</p>
+<p>Note that using <em>startAt</em> with <em>limitToLast</em> or <em>endAt</em> with <em>limitToFirst</em> produces unexpected behavior. You’ll see why in a few paragraphs… it’s harder to explain with words than with an example.</p>
+<p>So let’s assume that we have an object with zero-indexed keys, much like a Javascript array. Numeric keys are a Firebase anti-pattern. Notice that we don’t have a key “10”, because keys are always alpha-sorted and “10” would sort like this: “0”, “1”, “10”, “2”, “3”…</p>
+<p>Again, numeric keys are a Firebase anti-pattern. We should be using push keys… but push keys make for horrible demos, because humans don’t sort long alphanumeric keys in our heads.</p>
+<pre><code>“fruit”: {
+ “1”: “banana”,
+ “2”: “pear”,
+ “3”: “orange”,
+ “4”: “tomato”,
+ “5”: “mango”,
+ “6”: “pineapple”,
+ “7”: “strawberry”,
+ “8”: “grapefruit”,
+ “9”: “cranberry”
+ “10”: “tangerine”
+}
+</code></pre>
+<p>Let’s assume a <em>fruitRef</em> that points to the “fruit” node. “If we call <em>fruitRef.orderByKey().endAt(“5”)</em>, we’ll receive keys 1…5. If we call <em>fruitRef.orderByKey().startAt(“5”)</em>, we’ll receive keys 5…10. It’s pretty straightforward. If we run <em>fruitRef.orderByKey().equalTo(“5”)</em>… well, you get the pattern… it returns key <em>“5&quot;: “mango”</em>.</p>
+<h3>Limit results</h3>
+<p>Query orders and ranges are useful on their own, but they hit their stride when combined with limit statements. You’ll want to use limits for most of your queries to avoid pulling down any more data than necessary.</p>
+<p>You’ve got two options for limits:</p>
+<ul>
+<li>
+<p>limitToLast</p>
+</li>
+<li>
+<p>limitToFirst</p>
+</li>
+</ul>
+<p>Let’s refer back to the fruit “array” we used earlier and run through a few scenarios.</p>
+<ol>
+<li>
+<p><em>fruitRef.orderByKey().limitToLast(3)</em>: returns keys 8, 9, 10</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().limitToFirst(3)</em>: returns keys 1, 2, 3</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().startAt(“5”).limitToLast(3)</em>: returns keys 8, 9, 10</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().startAt(“5”).limitToLast(10)</em>: returns keys 5, 6, 7, 8, 9, 10 <strong>(bookend query)</strong></p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().startAt(“5”).limitToFirst(3)</em>: returns keys 5, 6, 7</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().endAt(“5”).limitToLast(3)</em>: returns keys 3, 4, 5</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().endAt(“5”).limitToFirst(3)</em>: returns keys 1, 2, 3</p>
+</li>
+<li>
+<p><em>fruitRef.orderByKey().endAt(“5”).limitToFirst(10)</em>: returns keys 1, 2, 3, 4, 5 <strong>(bookend query)</strong></p>
+</li>
+</ol>
+<p>Scenarios 3 and 4 require a little explanation. They both have <em>startAt</em> ranges starting at “5” and going to the end of the list. The <em>limitToLast</em> statements still read from the end of the list, so the <em>startAt</em> range acts like a <strong>bookend</strong> to the query. Think of <em>startAt</em> and <em>endAt</em> as ranges, less as starting and ending points. Notice that scenarios 7 and 8 are the inverse of 3 and 4.</p>
+<p><em><em>A note on orderBy</em> methods</em>*
+We’re ordering by key in this example, but ordering by child, value or priority works the same. Firebase will first try to sort the keys/children/priorities/values numerically, and then it will sort them as strings… so if you have a mix of numbers and strings, the numbers will sort to the top and the strings to the bottom.</p>
+<p>You’ll typically avoid this confusion by remembering that sorting on a mix of numbers and strings is ridiculous.</p>
+<h3>The REST API</h3>
+<p>All of the queries described above are also available as raw JSON via Firebase’s REST API. The <a href="https://firebase.google.com/docs/database/rest/start">REST API docs</a> cover it all. Just know that if you can query it with the JavaScript SDK, you can query it with REST.</p>
+<p>But the REST API does provide one extra feature that you’ll need: <a href="https://firebase.google.com/docs/database/rest/retrieve-data#shallow">shallow queries</a>.</p>
+<p>Shallow queries are available <em>only</em> via REST, and they’re crucial for handling large datasets. Shallow queries let you query just the child keys from a particular node. Try hitting <a href="https://docs-examples.firebaseio.com/rest/retrieving-data.json%5D(https://docs-examples.firebaseio.com/rest/retrieving-data.json)">https://docs-examples.firebaseio.com/rest/retrieving-data.json</a> in your browser. You should see something like this:</p>
+<pre><code>{
+ body: “Hello!”,
+ message: {
+  user: {
+   name: “Chris”
+  }
+ }
+}
+</code></pre>
+<p>Now hit the same url but with <em>shallow=true</em> as a query paramter, <a href="https://docs-examples.firebaseio.com/rest/retrieving-data.json?shallow=true%5D(https://docs-examples.firebaseio.com/rest/retrieving-data.json?shallow=true).">https://docs-examples.firebaseio.com/rest/retrieving-data.json?shallow=true.</a></p>
+<pre><code>{
+ body: true,
+ message: true
+}
+</code></pre>
+<p>See how you get just the top-level keys? This is the only way to query Firebase data that does <em>not</em> return entire objects. If your data is huge, use shallow REST queries to sort through large lists and decide exactly what data you need to query normally through the SDK.</p>
+<h3>Pagination Exercise</h3>
+<p>Firebase does not have built in pagination. Firebase collections are meant to be consumed as streams of data, so imagine running a query like <em>fruitRef.orderByKey().limitToLast(3).on(‘child_added’, callback)</em>. Your callback will get called three times, once for each of the last three results. But imagine a scenario where users are adding more fruit in realtime… so pretty soon your callback will fire again for “<em>11”: “artichoke”</em> or whatever else your users are adding. If you’re listening to the <em>child_removed</em> event on the same query, you’ll get a callback there as well because <em>“8”: “grapefruit”</em> has just fallen off of the query.</p>
+<p>The point is that you need to be thinking of streams and events instead of thinking of static pagination. Your apps are realtime. Firebase is realtime. We need to reason about pagination as moving up and down a flowing stream of data.</p>
+<p>To test this out, let’s run the following code to load a bunch of data from the Star Wars API (SWAPI). You’ll need to run <em>npm install axios firebase</em> in a new folder to get the dependencies. You’ll also need to change the <em>firebase.initializeApp(payload)</em> payload to match the location of your <em>service-account.json</em> file and the <em>databaseURL</em> of your Firebase.</p>
+<p>Now check your Firebase Realtime Database viewer at <em>/swapi/people</em> to make sure that you have 10 Star Wars characters stored in the collection. They’re currently indexed by their SWAPI person number. I would typically recommend using push keys with <em>peopleRef.push(res.person)</em>, but SWAPI has person ID numbers already, so matching those won’t hurt. Just don’t try to create your own ID system… when in doubt, use push keys.</p>
+<p>We’re going to demonstrate two ways to paginate through this list, each with its own costs and benefits.</p>
+<h3>Cursor pagination</h3>
+<p>Cursor pagination scales forever, but you have to step forwards or backwards through the pages one at a time. You don’t know how many total pages you have, and you can’t skip pages.</p>
+<p>In this example we have 10 records indexed 1…10 and a page length of 2 records per page. You simply request 3 records, pop the third record off to use as a cursor, and add the first 2 records to the page.</p>
+<p>The following example recursively gets all of the pages and spits out an array of pages. Try running this code on your own machine to see it in action. Make sure to edit the path to your <em>service-account.json</em> if it’s different, and definitely change your <em>databaseURL</em> to match your Firebase. Also make sure that you’ve run <em>load-swapi-data.js</em> to populate your <em>swapi/people</em> node.</p>
+<h3>Keys-based pagination</h3>
+<p>Keys-based pagination differs from cursor pagination in that you first request all of the child keys using a REST call and then create page breaks from the list of keys. It’s great when you have a limited number of child records, because you know exactly how many pages you have and you can jump backwards and forwards through the pagination.</p>
+<p>The following example uses keys-based pagination to return an array of all of the pages. Note, this is just an example. You’d never request all of the data right off the bat like this. In regular, non-demo practice you’ll create a list of page keys and only request the data as needed when your user jumps to a specific page.</p>
+<p>Try running this locally like you did for the cursor pagination code to see it in action.</p>
+<h3>A quick summary, because this can be confusing</h3>
+<p>Let’s be clear. These queries can be tricky to compose. I played around for about an hour to get both of these pagination examples working, and it wasn’t the first time that I’ve written these kinds of pagination.</p>
+<p>Here’s what you need to remember:</p>
+<ul>
+<li>
+<p>Always specify your <em>orderBy</em>* parameter first</p>
+</li>
+<li>
+<p>Use <em>limitToFirst</em> to read from the top of the list (ascending sort order)</p>
+</li>
+<li>
+<p>Use <em>limitToLast</em> to read from the bottom of the list (descending sort order)</p>
+</li>
+<li>
+<p>If you’re using <em>limitToFirst</em>, use <em>startAt</em> to start reading from the middle of the list. Otherwise, <em>limitToFirst</em> will default to reading from the very top of the list.</p>
+</li>
+<li>
+<p>If you’re using <em>limitToLast</em>, use <em>endAt</em> to start reading from the middle of the list. Otherwise, <em>limitToLast</em> will default to reading from the very bottom of the list.</p>
+</li>
+<li>
+<p>Don’t pair up <em>limitToFirst</em> with <em>endAt</em>. It just “bookends” the query.</p>
+</li>
+<li>
+<p>Don’t pair up <em>limitToLast</em> with <em>startAt</em>. It just “bookends” the query.</p>
+</li>
+</ul>
+<p>That’s Firebase queries! Play around with these pagination examples and you’ll get the hang of it.</p>
+<h2>Quiz</h2>
+<p>Review <em>value</em> and <em>child_added</em> events in <a href="https://firebase.google.com/docs/database/web/lists-of-data#sorting_and_filtering_data">the docs</a> and answer the following questions.</p>
+<ul>
+<li>
+<p>Which event is best for returning a single item?</p>
+</li>
+<li>
+<p>Which event is best for returning lists of items?</p>
+</li>
+<li>
+<p>Can the *value *event be used to retrieve a shallow copy of a node?</p>
+</li>
+<li>
+<p>Which event consistently returns sorted data?</p>
+</li>
+</ul>
+<p>Create a demo folder and wire up a Node.js file to read data from your Firebase. Complete the following tasks in Node.js.</p>
+<ul>
+<li>Create a list of items using push keys that looks something like this (but with your own push keys… they’re unique):</li>
+</ul>
+<pre><code>{
+ -KIhlFRg9KB7eDjVVGYr: 1,
+ -KIhlFRle3WO2N0xcX20: 2,
+ -KIhlFRnXobs-JZXqn1c: 3,
+ -KIhlFRnXobs-JZXqn1d: 4,
+ -KIhlFRnXobs-JZXqn1e: 5,
+ -KIhlFRnXobs-JZXqn1f: 6,
+ -KIhlFRnXobs-JZXqn1g: 7,
+ -KIhlFRnXobs-JZXqn1h: 8,
+ -KIhlFRnXobs-JZXqn1i: 9,
+ -KIhlFRnXobs-JZXqn1j: 10
+}
+</code></pre>
+<ul>
+<li>Create a series of queries and use the <em>child_added</em> listener to return the following record sets. Use <em>ref.orderByValue()</em> as necessary.</li>
+</ul>
+<ul>
+<li>1, 2, 3, 4</li>
+<li>4, 5, 6, 7</li>
+<li>The last four records ending in record 9 (records 6, 7, 8, 9)</li>
+<li>The first four records starting with record 2 (records 2, 3, 4, 5)</li>
+</ul>
+<ul>
+<li>
+<p>Add a security rule (<em>“.indexOn”: [“.value”]</em>) to your list node to get rid of the <em>FIREBASE WARNING</em> messages you’re likely seeing.</p>
+</li>
+<li>
+<p>Stretch Task: Implement pagination with the REST and cursor methods, but instead of querying all of the pages at once as seen in the earlier examples, try querying one page at a time. Maybe the REST pagination function can take a specific page number and return just those results, and the cursor method can read out the first three pages and stop.</p>
+</li>
+</ul>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

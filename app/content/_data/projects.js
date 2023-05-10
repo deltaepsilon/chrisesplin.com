@@ -1,4 +1,15 @@
 module.exports = {
+  QUIVER_PHOTOS: {
+    name: 'QuiverPhotos',
+    time: 'October 2022 - April 2023',
+    hours: '> 200',
+    contributors: ['@ChrisEsplin'],
+    technologies: ['Firebase', 'GitHub Actions', 'React', 'Next.js', 'Emotion CSS', 'LevelDB', 'WebSockets'],
+    url: '/projects/quiver-photos',
+    projectUrl: 'https://photos.chrisesplin.com/',
+    logotype: '/static/images/logotypes/quiver-photos-logotype.png',
+    logo: '/static/images/logos/quiver-photos-logo.png',
+  },
   COLOSSAL: {
     name: 'Colossal',
     time: 'January - March 2020',

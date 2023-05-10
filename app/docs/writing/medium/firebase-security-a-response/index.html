@@ -1,0 +1,165 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Firebase Security&#58; A Response</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Firebase Security&#58; A Response</span>
+        </div>
+        <div class="subtitle text-bold">undefined</div>
+
+        <span class="date">2018/07/02</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>I pay close attention to the Firebase ecosystem, so my Google News feed often has Firebase- and Google-related articles in it.</p>
+<p>A few weeks ago I saw an article pass through my feed about Firebase apps leaking data.</p>
+<p>It was coverage of <a href="https://www.appthority.com/mobile-threat-center/blog/appthority-discovers-thousands-of-apps-with-firebase-vulnerability-exposing-sensitive-data/">some security research by a company named Appthority</a>.</p>
+<p>Appthority did an audit of thousands of Android and iOS apps and found some serious problems. These apps had all implemented Firebase, but failed to implement Firebase security rules.</p>
+<p>So these apps’ Firebase databases are basically public for everyone to read.</p>
+<p>I thought, “wow, that’s really horrible… I sure hope they get that fixed!”… and I forgot about it.</p>
+<p>But in the last few days the coverage has gotten heavier and it’s entered into clickbait territory.</p>
+<p>When the clickbait farms start to recycle content, the coverage goes from “ok” to “horrible”. The details of the story suffer, because the clickbait farms are churning out articles without even a cursory understanding of what they’re writing about.</p>
+<p>So I’d like to clear this situation up a bit.</p>
+<p>Just be to one-hundred percent up front, I am not speaking for anyone but myself.</p>
+<p>These are my opinions that I’m talking about because the clickbait is misleading.</p>
+<p>So what is actually happening with these data leaks?</p>
+<p>It’s simple.</p>
+<p>Bad developers are lazy and believe in security-through-obscurity. Firebase has given them all of the tools that they need, but they haven’t used them. And as a result, apps by lazy, incompetent developers are leaking data all over the web.</p>
+<p>This happens because Firebase is a back-end as a service. This necessitates that the Firebase database is publicly accessible. Anyone can make requests to your Firebase database, both the Realtime Database and Firestore.</p>
+<p>So Firebase has Security Rules that you write to lock down your databases.</p>
+<p>These rules are, admittedly, the weakest part of the Firebase platform. I am not implying that the security itself is weak, because it’s bulletproof. But Security Rules are difficult for developers to understand, because they solve a complex set of problems.</p>
+<p>I’ve noticed that Firebase’s default security rules have become more strict over the years. You now have to manually override them to make your database public. You’re supposed to replace the default rule with your app-specific rules to lock your data.</p>
+<p>It’s a little like changing the admin password on your new router.</p>
+<p>People don’t think anything will ever happen to them, so the vast majority of routers still use their publicly-discoverable default passwords.</p>
+<p>Likewise, bad developers don’t think anything will ever happen to them, so they override Firebase’s Security Rules and make their apps publicly accessible.</p>
+<p>A publicly-accessibly app is easier to develop on because you never run afoul of your own Security Rules.</p>
+<p>And that’s fine if you’re writing a little demo app or an internal prototype with dummy data. But it’s become clear that there are a ton of bad developers out there, and that these devs shipped their apps without ever locking them back up.</p>
+<p>If you’re interested in stealing, there are a ton of insecure apps on the web.</p>
+<p>And some of them are poorly configured Firebase apps.</p>
+<p>If you’ve been a bad developer, please write some security rules. I’m happy to help you sort them out.</p>
+<p>In fact, I’ve written <a href="https://www.fullstackfirebase.com/cloud-firestore/security-rules">some tutorials over on FullStackFirebase.com </a>that will prove useful.</p>
+<p>And for everyone else… thank you for taking basic security measures and locking down your Firebase apps.</p>
+<p>Data security is no joke.</p>
+<p>We have to take our responsibility as developers very seriously.</p>
+<p>I don’t want to work in a highly-regulated industry, and bad data security, even if it’s inadvertent, will drag us all down.</p>
+<p>And if you somehow conned me into installing an insecure app on my phone…</p>
+<p>…shame.</p>
+<p>Shame.</p>
+<p>Shame.</p>
+<p>Shame.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

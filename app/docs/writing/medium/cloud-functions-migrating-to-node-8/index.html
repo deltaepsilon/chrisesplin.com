@@ -1,0 +1,154 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cloud Functions&#58; Migrating to Node 8</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Cloud Functions&#58; Migrating to Node 8</span>
+        </div>
+        <div class="subtitle text-bold">Google Cloud Functions has been stuck on Node 6 since launch.</div>
+
+        <span class="date">2018/07/25</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>But Google Cloud’s Next conference is this week, and they <a href="https://twitter.com/GCPcloud/status/1021829577826398208">just announced the new Node 8 runtime</a>.</p>
+<p>I miss my async/await from Node 8, so I spent the morning upgrading my Cloud Functions.</p>
+<p><img src="./images/1T-xSjDxGlT4SrJSgNnGhPQ.png" alt="async/await comes to Cloud Functions for Firebase"><em>async/await comes to Cloud Functions for Firebase</em></p>
+<h2>Steps to Upgrade to Node 8</h2>
+<p>Here’s what you need to do to get on the Node 8 train:</p>
+<ol>
+<li>
+<p>Upgrade your <code>firebase-functions</code> version to <code>2.0.0</code></p>
+</li>
+<li>
+<p>Upgrade <code>firebase-tools</code> to <code>4.0.0</code></p>
+</li>
+<li>
+<p>Add <code>&quot;engines&quot;: { &quot;node&quot;: &quot;8&quot; }</code> to your <code>/functions/package.json</code></p>
+</li>
+</ol>
+<p>I had some difficulty figuring out these steps, so I manually deleted a Node 6 version of my function using the GCP console. That may have helped… but I have no way of testing that now.</p>
+<h2>Why Node 8?</h2>
+<p>Node 8 has <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async/await</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread operator</a>.</p>
+<p>There’s probably more… but I don’t care. That’s all that I need right now.</p>
+<p>Both of these features have been around on the front end for a while now. Developing in Node 6 has been sad.</p>
+<p>Oh yeah… and you can use Node-8-only packages… for whatever that’s worth!</p>
+<h2>Examples</h2>
+<p>Here’s the repo that I’m working on right now: <a href="https://github.com/deltaepsilon/firebase-ssr-starter/tree/master/functions">firebase-ssr-starter</a></p>
+<p>And there’s a new Node 8 branch of the <a href="https://github.com/firebase/functions-samples/tree/Node-8">firebase/functions-samples</a> repo.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

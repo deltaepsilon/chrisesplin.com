@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Firebase SSR Starter</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Firebase SSR Starter</span>
+        </div>
+        <div class="subtitle text-bold">I love starting new projects!</div>
+
+        <span class="date">2018/08/07</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>It’s so much fun to architect an app from scratch.</p>
+<p>My latest project is another app starter, this time focusing on server-side rendered React with the regular hooks into Firebase and a special focus on performance.</p>
+<p>It’s basically an app shell that scores well on Lighthouse and incorporates everything that I need. Once this app shell is running smoothly I’ll use it to start my next production app, so it’s super important that I get this done right, because my business will succeed or fail based on how well this app appeals to users.</p>
+<p>I’m calling this initial project <a href="https://github.com/deltaepsilon/firebase-ssr-starter">Firebase SSR Starter</a>, where SSR stands for server-side rendered. And of course I have benchmarks to hit, which is why this is interesting!</p>
+<ol>
+<li>
+<p>The app needs to be SEO-friendly and server-side rendered.</p>
+</li>
+<li>
+<p>I need an architecture that will last for three-to-five years.</p>
+</li>
+<li>
+<p>I need to max out my Lighthouse performance score.</p>
+</li>
+</ol>
+<p>I’ve been doing a bunch of research and landed on <a href="https://nextjs.org/">Next.js with React</a>.</p>
+<p>Next.js has an excellent server-side rendering system. Next is a framework…which I kinda hate… but it’s flexible enough, and it solves so many problems that I’d have to solve myself and I know that I couldn’t roll a stronger framework than Next.</p>
+<p>Now for my maintainability requirement.</p>
+<p>Three-to-five years is a steep requirement in the JavaScript ecosystem, so I’m not using any of the fancy, new stuff that I kinda want to use.</p>
+<p>I need long-term maintainability, so I’m sticking with React.</p>
+<p>I’d love to try <a href="https://github.com/polymer/lit-html">lit-html</a> or use <a href="https://preactjs.com/">Preact</a>… but I can’t justify it. React has the ecosystem momentum these days, and I’m going to need a lot of continuity. I need the lowest maintenance costs possible in years two through five of this app’s lifespan.</p>
+<p>My last big, long-term app was written in AngularJS, and we all know how AngularJS went. Year one was great, two was a little sad, and years three and four have been a failure. The last time I had to build my old AngularJS app from scratch I spent 12 hours resurrecting it.</p>
+<p>I’m not doing that again, so I’m sticking with tried-and-true React.</p>
+<p>So what about performance?</p>
+<p><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse </a>is a Chrome extension that will be an integrated part of DevTools in Chrome 69. Lighthouse runs hundreds of tests on your app and tells you that your performance is horrible… so then you spend the next few days improving your app’s performance with Lighthouse’s checklist, and you either get to a perfect score of 100 or, like me, give up in the high 90s.</p>
+<p><img src="./images/1KCHQG8hDtPPsIDQnSHBo6w.png" alt="Ugh. That first contentful paint is still slow."><em>Ugh. That first contentful paint is still slow.</em></p>
+<p>Lighthouse includes a bunch of nice-to-have optimizations.</p>
+<p>A truly generic app architecture should be able to score a 100 on Lighthouse pretty easily; however, once you start to make app-specific decisions, scoring 100 can be impossible.</p>
+<p>For instance, I’m using a <a href="https://jamesmfriedman.github.io/rmwc/">React Material Design framework </a>that doesn’t support passive scrolling.</p>
+<p>And of course Lighthouse requires passive scrolling for a perfect one hundred, and I’m not about to hack into the internals of this Material Design framework, especially not for very minor passive-scroll improvements.</p>
+<p>So I’m not scoring a perfect one hundred… but I got pretty close.</p>
+<p>The hardest part of this entire Lighthouse performance audit was getting Firebase to load.</p>
+<p>Each part of Firebase is available as its own SDK, so once the main firebase-app library is imported, you can import each piece separately.</p>
+<p>But even in separate parts, Firebase is a heavy library.</p>
+<p>All of those juicy Firebase features don’t come for free.</p>
+<p>I optimized my Firebase imports by not bundling Firebase with the rest of my app. I added script tags for each part of the Firebase SDK into the app shell. But I made sure to put those script tags near the end of my body tag, because they have to be loaded in a synchronous, blocking manner.</p>
+<p><img src="./images/1ufLJkuq_pJ7NEWnN5y7KyA.png" alt="Loading Firebase SDK scripts at the end"><em>Loading Firebase SDK scripts at the end</em></p>
+<p>And I don’t want one hundred kilobytes of Firebase SDK to block my app shell’s initial paint time.</p>
+<p>Putting the Firebase SDK scripts at the bottom of my app shell allows the rest of the shell to render before the SDK scripts block the page.</p>
+<p>The tricky part of this process is that my app requires Firebase to boot so my app code needs to load just after the Firebase scripts are done loading.</p>
+<p>This method has some benefits and one, big cost.</p>
+<p>The cost is that my app will not be interactive until Firebase is fully loaded.</p>
+<p>This hurts my time-to-interactive performance on the initial page load.</p>
+<p>I really didn’t want to sacrifice my initial time-to-interactive, but it had to happen.</p>
+<p>See, the benefits outweigh this cost, at least in my case, and that’s because I don’t want to suffer through the misery of making my app asynchronous.</p>
+<p>It’s possible to only block the parts of the app that rely on Firebase, but that requires handling a bunch of asynchronous rending within the app itself.</p>
+<p>And since Firebase is so core to the app’s architecture, there wouldn’t be much of the app that could load before the Firebase SDK. So the benefits of going all asynchronous with the Firebase loading aren’t huge and building the entire app around asynchronous Firebase loading would be quite challenging.</p>
+<p>So I’m using Firebase’s CDN links for the SDK, which means that the client’s browser may already have the CDN files cached.</p>
+<p>And since I have full Service Worker caching in place, only the very first page load is ever effected.</p>
+<p>Once the client browser has the Firebase SDK files, the app will load almost instantly.</p>
+<p>So it’s not perfect, but shipping code is all about making smart compromises. which means accepting that you can’t have all of the nice things at once.</p>
+<p><img src="./images/16gVuNn6vd0Vu8sSk9OeLAw.png" alt="Trying to shrink that bundle size"><em>Trying to shrink that bundle size</em></p>
+<p>You can find my <a href="https://github.com/deltaepsilon/firebase-ssr-starter">Firebase SSR Starter code on GitHub</a>.</p>
+<p>You’re welcome to copy it, but I’d recommend using it as a reference instead.</p>
+<p>In my early years developing, I often used other people’s app starters for my projects.</p>
+<p>It’s a great feeling to jump right into building my app-specific features, but building an app starter involves so many small decisions, and you need to make those decisions yourself to truly understand how the app works.</p>
+<p>So I’ll probably reference this starter app a lot going forward, but I’ll most likely only use it for my next app because I’ll have learned so much by the end of that build out, that I’ll need to start fresh.</p>
+<p>So copy/paste and learn from the past, but don’t value it too highly, because you always know more NOW than when you started your last app, and you need to be deeply familiar with your architecture if you hope to ship anything valuable.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

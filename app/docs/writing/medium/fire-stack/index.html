@@ -1,0 +1,166 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>🔥🔥🔥 FIRE Stack 🔥🔥🔥</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">🔥🔥🔥 FIRE Stack 🔥🔥🔥</span>
+        </div>
+        <div class="subtitle text-bold">I recently ran across an old blog post by Michael Bleigh of DivShot fame and a current Firebase team member. In the post Michael describes my favorite Firebase architecture and gives it a name:</div>
+
+        <span class="date">2016/09/02</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>🔥🔥🔥 <strong>FIRE Stack</strong> 🔥🔥🔥 [emoji added]</p>
+<h2><strong>FIRE = (F)irebase + (I)nterface + (Re)actors</strong></h2>
+<p><strong>Firebase</strong>: The Firebase Realtime Database that stores your data</p>
+<p><strong>Interface</strong>: Any client-side app—Android, iOS, Angular, React, Polymer, etc.</p>
+<p><strong>Reactors</strong>: Server functions that react to changes in your Firebase database</p>
+<p>I’ve been using this architecture for over a year now without putting a name on it. Other architectures have snazzy names, why not FIRE? Regardless, it’s a fantastic architecture with the potential to make you give up HTTP APIs for good. Sure, we’ll be consuming HTTP for a while until HTTP/2 takes over, but we don’t have to write HTTP any longer.</p>
+<p>Firebase already handles most of the API surface area, so FIRE stack development hands it the last bit of the API and kisses HTTP goodbye.</p>
+<h2>Why FIRE stack?</h2>
+<p><strong>WebSockets</strong>: FIRE stack uses WebSockets. The fastest <a href="http://blog.arungupta.me/rest-vs-websocket-comparison-benchmarks/">HTTP server can’t beat WebSockets</a> on performance benchmarks. Of course, HTTP/2 will help if your server supports it.</p>
+<p><strong>Schema-less NoSQL</strong>: Store and retrieve your data as raw JSON, exactly like you generate and consume it in the front-end client.</p>
+<p><strong>Minimal server code</strong>: You won’t need to write fancy APIs. Write your server code as discrete “reactor” functions that each handle one task. It’s like every reactor function is its own micro-service, portable, reusable and decoupled from the rest of your architecture.</p>
+<p><strong>Testability</strong>: Reactor functions are discrete and accept Firebase snapshots as input. Writing integration tests is as easy as pushing mock objects to your Firebase queues. And you can even mock your Firebase snapshots and write blazing fast unit tests if you’re so inclined.</p>
+<h2><strong>Example Time!</strong></h2>
+<p>Let’s code and see how simple this architecture really is.</p>
+<p>The following gist has three files. I’ll cover each file on its own.</p>
+<h3>fires-stack.js</h3>
+<p>This is the Node.js server process that will house our (RE)actor function. It initializes Firebase and then starts listening to the <strong>/queues-test/presses</strong> endpoint with a <strong>child_added</strong> event. The callback is the reactor function that will handle the queue items as they’re added to the endpoint.</p>
+<p>This example has a simple reactor function. It’s setting <strong>/queues-test/presses/&lt;uid&gt;/response</strong> or **…/error **based on whether <em>click.random</em> is greater than or less than 0.5. The reactor function then removes the queue item.</p>
+<h3>index.html</h3>
+<p>This is our client app or (I)nterface. It first forces anonymous authentication for security purposes and then adds queue jobs to the **/queues-test/presses/&lt;uid&gt; **endpoint. At the same time that it’s adding the queue job, it’s listening to <strong>child_added</strong> events on the same endpoint. This will enable the client app to receive the <strong>…/response</strong> or <strong>…/error</strong> results of the reactor function. Note, the reactor function deletes the queue item immediately, so you’ll need to be listening to <strong>child_added</strong> events before the reactor function has a chance to delete the queue item.</p>
+<h3>security-rules.json</h3>
+<p>This is the primary *gotcha *in this architecture. Remember how <strong>index.html</strong> forced anonymous authentication on line 26? Also remember how <strong>index.html</strong> used <em>firebase.auth().currentUser.uid</em> on line 34?</p>
+<p>The anonymous auth establishes a secure connection to Firebase. It gives us a uid that’s unique to this session and can be used in our security rules.</p>
+<p>Our security rules have two wildcards in the path, <em>$queue</em> and <em>$uid</em>. Each wildcard will apply to all matching paths, so we could create a new queue list under <strong>/queues-test/clicks</strong> and the same rules would apply to that node as apply to <strong>/queues-test/presses</strong>. The next and most crucial step is the <em>$uid</em> wildcard, because it matches all of the <em>currentUser.uid</em> values that our client app is using on line 37 of <strong>index.html</strong>.</p>
+<p>Now that we have <em>$uid</em> in our path, we get access to <em>$uid</em> in our security rules. Our client app also has an anonymous auth session with Firebase, which gives us access to <em>auth.uid</em> in our security rules. Now we grant read and write access based on a simple equality test.</p>
+<blockquote>
+<p>“.read”: “auth.uid == $uid”,
+“.write”: “auth.uid == $uid”</p>
+</blockquote>
+<h2>In Short</h2>
+<p>The pie-in-the-sky goal of Firebase is to create server-less, static applications for web, iOS and Android. The reality of most development is that you’ll need a server for something, be it data fan-outs, sending email, completing a financial transaction or anything else requiring a secure operation.</p>
+<p>But we already have the Realtime Database with it’s blazing fast WebSockets connection, so why not use that instead of HTTP? The FIRE stack architecture makes this easy, giving us the speed of WebSockets, the security of Firebase and the modular, micro-services architecture of Node.js reactor functions.</p>
+<p>My experience is that most Firebase devs gravitate toward this architecture over time. It’s quite intuitive once you understand how it works. It’s also incredibly flexible and fast to develop.</p>
+<h2><strong>Video</strong></h2>
+<p>I posted a little walkthrough to YouTube if you’d like to see this in action :)</p>
+<p>Go ahead and subscribe to my updates on Medium and/or YouTube to get more Firebase tutorials as I post them.</p>
+<p>Even better, sign up for my FREE 📬 <a href="http://eepurl.com/ceGkov">Firebase Newsletter</a> 📬 to get all of these FREE goodies sent to your inbox! Did I mention that it’s FREE??? 💵 💵 💵 This has got to be <em>at least</em> a $5000 value. You don’t want to be old and gray, thinking… “If only I’d signed up for the <a href="http://eepurl.com/ceGkov">Firebase Newsletter</a> when I had the chance…”</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

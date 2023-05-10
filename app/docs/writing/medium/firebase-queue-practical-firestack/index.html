@@ -1,0 +1,191 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Firebase Queue&#58; Practical FIRE Stack</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Firebase Queue&#58; Practical FIRE Stack</span>
+        </div>
+        <div class="subtitle text-bold">Client-server communication via WebSockets</div>
+
+        <span class="date">2016/11/07</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <p>One of the most popular questions that I hear is how to implement a server for a Firebase app. Firebase provides great client-side tooling, but what about server architecture?</p>
+<h2>FIRE Stack, the easy way</h2>
+<p>Firebase lends itself to an entirely new architecture that I’m calling <a href="https://howtofirebase.com/fire-stack-4195a13daf96">FIRE Stack</a>. FIRE stands for (F)irebase + (I)nterface + (Re)actor functions. (F)irebase acts as a message bus, your client-side app is your (I)nterface, and your server runs (Re)actor functions. So what are reactor functions anyway?</p>
+<h3>Reactor Functions</h3>
+<p>Reactor functions live on your server and handle secure operations that you can’t trust to your client-side app. Android and iOS apps can sometimes fake their way around the server, because their app code is not as easily discoverable by the end user… but us web devs have to be paranoid about what we expose to our client-side apps, because our browser code is always public.</p>
+<p>Enter reactor functions. Instead of communicating between client and server with a REST API as we’ve all been accustomed to, reactor functions use Firebase as a message bus. The client app pushes some data to a job queue, and our server listens to that queue and reacts to the incoming data.</p>
+<p>A great example of this that I use on all of my apps is user management. Firebase handles the client-side auth just fine, but I want to manage user profiles and permissions in a read-only fashion. I can’t have my clients writing their permissions to their own accounts!</p>
+<h2>Firebase Queue</h2>
+<p>The FIRE Stack solution to our user-permissions problem is to have our client app log each authentication event to a job queue. In this example, we’ll have them log to <em>/firebase-queue/login-queue/tasks</em>. The <em>/tasks</em> part of the path is required by Firebase Queue. Every Firebase Queue job queue must end in <em>/tasks.</em></p>
+<p><strong>Client-Side Code</strong></p>
+<p>The client-side JavaScript simply listens to the <em>onAuthStateChanged</em> event and pushes some user data to our <em>firebase-queue/login-queue/tasks</em> endpoint. You can push whatever data you like. This example is pretty minimal. You’ll need to push a uid and an email address if you want to do anything useful on the server.</p>
+<p><strong>Server-Side Code</strong></p>
+<p>Your server-side code needs to be a live, running Node.js process. You’ll need to run</p>
+<pre><code>*npm install --save firebase firebase-queue*
+</code></pre>
+<p>You’ll also need to initialize your Firebase app with *initializeApp(). *You can copy/paste the example above, but make sure to reference your own <em>serviceAccount</em> and <em>databaseURL</em> values. See <a href="https://howtofirebase.com/save-and-query-firebase-data-ed73fb8c6e3a">Save and Query Firebase Data</a> if you’re fuzzy on how this works.</p>
+<p>The great thing about this Node.js process is that the server running it does not need to be publicly accessible. You don’t need to open port 80 or 443 on your server for HTTP traffic… because we’re not using HTTP at all in this process. The entire exchange is handled over a WebSocket.</p>
+<p><strong>Line-by-Line Walkthrough</strong></p>
+<ul>
+<li>
+<p>Lines 7–9: Save refs for both the login-queue and wherever you want to save your user accounts. Also pull in an array of email addresses for admin users.</p>
+</li>
+<li>
+<p>Line 11: Create your new Firebase Queue object. The first argument is the queue ref that we’re listening to, minus the */tasks *part of the path. The second argument is the queue options. This second argument is optional, but we’ll typically use *{sanitize: false} *to prevent Firebase Queue from removing the metadata off of the incoming data. The last part of line 11 is the queue handler. The queue handler has four arguments, the incoming data from the <em>/tasks</em> endpoint, and functions for registering function progress, resolving the function and rejecting it.</p>
+</li>
+<li>
+<p>Line 12: The <em>progress</em> function is useful for debugging purposes. It updates a <em>_progress</em> attribute on the relevant task, so if the handler function fails for some reason, check *_progress *to aid in debugging.</p>
+</li>
+<li>
+<p>Line 13: Make the incoming user an admin user if appropriate</p>
+</li>
+<li>
+<p>Line 14: Write the user object to the <em>accountRef.</em></p>
+</li>
+<li>
+<p>Line 17: Remove the queue task.</p>
+</li>
+<li>
+<p>Lines 19–20: Resolve or reject the queue task based on the success or failure of the <em>accountRef</em> set operation.</p>
+</li>
+</ul>
+<h2>Security</h2>
+<p>You’ll need a security rule to manage your task queue. You wouldn’t want it to get hijacked by some hacker. Here’s an example rule that will provide some basic endpoint security for your queue.</p>
+<pre><code>“firebase-queue”: {
+  “login-queue”: {
+   “tasks”: {
+     “.indexOn”: [“_state”],
+     “$task”: {
+       &quot;.validate&quot;: &quot;auth.uid == newData.child('user').child('uid').val() &amp;&amp; auth.email == newData.child('user').child('email').val()&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>Security rules need to be tested carefully for your specific app. An example like this is great to get you started, but make sure you have a good idea of how security rules work before taking something like this to production. Security rules are powerful if used correctly… or completely worthless if you don’t test them thoroughly.</p>
+<h2>Questions?</h2>
+<p>Hit me up on <a href="https://twitter.com/ChrisEsplin">Twitter</a>, <a href="https://www.youtube.com/playlist?list=PLdssc-pDiZ7MJeKr4k5r33jCGOT2H_iKB">YouTube</a> or Medium comments with your questions and comments. I try to respond quickly.</p>
+<p>And don’t forget…</p>
+<h3>Read The Docs</h3>
+<p>No tutorial or video can take the place of <a href="https://github.com/firebase/firebase-queue/blob/master/docs/guide.md">reading the docs</a>. The Firebase Queue docs are great, and you’ll find a bunch of useful features that I haven’t covered here.</p>
+<h3>Test Your Architecture</h3>
+<p>At some point you’ll want to take a FIRE Stack app into production. Make sure to get your security rules and server scaling worked out early, because these issues can be thorny if you wait to long to sort them out.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  
