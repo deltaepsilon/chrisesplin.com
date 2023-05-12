@@ -1,6 +1,0 @@
-.vscode
-bin
-dev
-
-app/node_modules
-app/functions/node_modules

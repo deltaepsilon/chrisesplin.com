@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('static');
+  eleventyConfig.addPassthroughCopy('writing/articles/**/*.png');
   eleventyConfig.addPassthroughCopy('writing/medium/**/*.png');
 
   for (const key in shortcodes) {
@@ -10,6 +11,8 @@ module.exports = function (eleventyConfig) {
   }
 
   eleventyConfig.dir = { output: path.join(__dirname, '..', 'docs') };
+
+  eleventyConfig.addWatchTarget('./writing');
 
   return eleventyConfig;
 };

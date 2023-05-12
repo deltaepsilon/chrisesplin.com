@@ -1,0 +1,166 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Source maps should be public</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <style>
+        .page {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .page p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="page">
+      <style>
+        .writing {
+          width: 800px;
+          max-width: calc(100vw - 2em);
+        }
+
+        .writing p {
+          margin-bottom: 2em;
+        }
+      </style>
+      <div class="writing">
+      <style>
+        .medium .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+          font-size: 1.5em;
+        }
+        
+        .medium .subtitle {
+          margin-bottom: 2em;
+        }
+
+        .medium .date {
+          /* font-size: 0.5em; */
+        }
+
+        .medium hr {
+          margin-top: 1em;
+        }
+
+        .medium img ~ em {
+          display: block;
+          font-size: 0.75em;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+      <div class="medium">
+        <hr/>
+        
+        <div class="title">
+          <span class="text-headline">Source maps should be public</span>
+        </div>
+        <div class="subtitle text-bold">Your front-end team needs source maps. Give them production source maps!</div>
+
+        <span class="date">2023/05/11</span>
+        
+        <hr/>
+
+        <div className="medium-content">
+          <h2>Highlight.io</h2>
+<p>This article was originally written for the <a href="https://www.highlight.io/">highlight.io blog</a>.</p>
+<p>I'm currently employed by Highlight as a software engineer working on the core product as well as docs and public-facing content.</p>
+<h2>What are source maps?</h2>
+<p>Source maps are critical for web development in today's JavaScript environment.</p>
+<p>All of our build tools—Rollup, Vite, WebPack, ESBuild—transpile and bundle our JavaScript and CSS.</p>
+<p>Debugging errors in production with transpiled code is nigh impossible. So our tooling creates source maps.</p>
+<p>See <a href="https://web.dev/source-maps/">What are source maps? by Jecelyn Yeen</a> for all of the details.</p>
+<h1>Why private source maps?</h1>
+<p>Private source maps make it harder for an attacker to understand your front-end application.</p>
+<p>An attacker can easily use source maps to view the code in its original, un-transpiled state. The same source maps that make debugging easier make attacking your application easier.</p>
+<p>Check out our unobfuscated source code on <code>https://www.highlight.io</code>!</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/84775c15-360a-4648-9cb3-987341ee309d" alt="unobfuscated-source-code"></p>
+<h2>Why private source maps don't matter</h2>
+<p>Guess what!</p>
+<p>Chrome Dev Tools makes deconstructing your JavaScript application relatively easy.</p>
+<p>For instance, You can open up the Network tab and watch each request and response.</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/fbf16a8c-b3b4-45bb-9226-d815b0f9b281" alt="network-tab"></p>
+<p>The Application tab surfaces the data your site is saving locally.</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/bfa9af40-be66-4774-9a73-bf19d2e04383" alt="application-tab"></p>
+<p>Who cares how the code is written if the results, in both data and network, are readily visible?</p>
+<p>Dev Tools will even allow an attacker to reformat the code and use breakpoints to step through it!</p>
+<h2>ChatGPT as de-compiler</h2>
+<p>ChatGPT struggles with long code snippets, so it's not yet a silver bullet for decompilation.</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/bfb4c9e7-1486-4e36-8624-8a3eb951b9a1" alt="chat-gpt-fail"></p>
+<p>But ChatGPT can de-compile shorter code snippets quite effectively.</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/ffb9b402-e90c-4501-879f-ab0196be5a01" alt="chat-gpt-success"></p>
+<h1>Benefits of public source maps</h1>
+<h2>Debug with Dev Tools</h2>
+<p>Dev Tools will automatically recognize and apply public source maps to your code.</p>
+<p>Debugging production issues will be much, much easier, especially if you see errors in your console. With public source maps, Dev Tools can link your errors directly to the de-compiled code. It's magical.</p>
+<p><img src="https://github.com/highlight/highlight/assets/878947/804d1f89-8939-45e2-9b98-a1f6124ae823" alt="dev-tools-debugger"></p>
+<h2>Highlight automatically recognizes public source maps</h2>
+<p>Highlight does support private source maps. We even publish a <a href="https://www.npmjs.com/package/@highlight-run/sourcemap-uploader">source map uploader</a> on NPM that will send your private source maps directly to our servers.</p>
+<p>Our source map uploader works fine, but it's tricky for users to implement and is a constant source of bugs. Frankly, we struggle to create a universal solution that can't be broken by unique build pipelines.</p>
+<p>However, if you make your source maps public, you don't have to do any of that work. And you automatically get production source maps for your own debugging in Dev Tools.</p>
+<p>It's a win/win.</p>
+  
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  

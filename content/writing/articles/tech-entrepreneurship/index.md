@@ -1,5 +1,5 @@
 ---
-layout:  medium
+layout:  article
 slug: tech-entrepreneurship
 date: 2022-10-03T00:00:00.000Z
 author: "Chris Esplin"

@@ -13,7 +13,10 @@ module.exports = class Writing {
   }
 
   async render() {
-    const links = await getLinks();
+    const articleLinks = await getLinks('articles');
+    const mediumLinks = await getLinks('medium');
+
+    console.log
 
     return String.raw`
       <style>
@@ -22,7 +25,7 @@ module.exports = class Writing {
           padding: 0;
         }
 
-        .medium-link {
+        .article-link {
           display: flex;
           justify-content: space-between;
           max-width: 800px;
@@ -31,18 +34,24 @@ module.exports = class Writing {
       </style>
       
       <div class="writing">
-        <h3>Medium Articles</h3>
+        <h3>Articles</h3>
 
         <ul>
-          ${links.map((link) => String.raw`<li>${link}</li>`).join('')}
+          ${articleLinks.map((link) => String.raw`<li>${link}</li>`).join('')}
+        </ul>
+      
+        <h3>Medium</h3>
+
+        <ul>
+          ${mediumLinks.map((link) => String.raw`<li>${link}</li>`).join('')}
         </ul>
       </div>
     `;
   }
 };
 
-async function getLinks() {
-  const files = fs.readdirSync(path.join(__dirname, './medium'));
+async function getLinks(folder) {
+  const files = fs.readdirSync(path.join(__dirname, folder));
   const mdFiles = files.map((filename) => {
     const isMd = filename.slice(-3) === '.md';
 
@@ -51,7 +60,7 @@ async function getLinks() {
   const mdData = await Promise.all(
     mdFiles.map(async (filepath) => {
       const fileContents = await promisify(fs.readFile)(
-        path.join(__dirname, 'medium', filepath),
+        path.join(__dirname, folder, filepath),
         'utf8'
       );
 
@@ -64,7 +73,7 @@ async function getLinks() {
       const dateString = attributes.date ? formatDate(attributes.date) : '';
 
       return String.raw`
-        <a class="medium-link" href="/writing/medium/${attributes.slug}"> 
+        <a class="article-link" href="/writing/${folder}/${attributes.slug}"> 
           <span>${attributes.title}</span>
           <span>${dateString}</span>
         </a>
