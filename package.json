@@ -11,8 +11,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "yarn start",
-    "start": "cd content && eleventy --serve --port=4000 --watch",
-    "build": "cd content && eleventy",
+    "eleventy": "cd content && eleventy",
+    "start": "yarn eleventy --serve --port=4000 --watch",
+    "build": "yarn eleventy && cp ./_site/ ../docs -r",
     "medium:export": "node bin/medium/export-medium.js"
   }
 }

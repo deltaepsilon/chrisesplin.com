@@ -10,9 +10,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addJavaScriptFunction(key, shortcodes[key]);
   }
 
-  eleventyConfig.dir = { output: path.join(__dirname, '..', 'docs') };
-
   eleventyConfig.addWatchTarget('./writing');
-
+  
   return eleventyConfig;
 };
