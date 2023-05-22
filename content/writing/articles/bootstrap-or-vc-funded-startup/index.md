@@ -64,11 +64,11 @@ Ouch.
 
 The business was dying.
 
-We tried to kick into overdrive, but there was nothing actionable. We'd tried all of our best ideas already. The business was just failing. Slowly. We just watched it wither.
+We tried to kick into overdrive, but there was nothing actionable. We'd tried all of our best ideas already. The business was just failing. Slowly. We watched it wither.
 
 The slow decline was excruciating.
 
-My wife had been hustling for years and her energy was fading. But the core driver was consumer behavior. A bunch of competitors had cropped up, and while their products were inferior, they were cutting into our revenue. And to top it off, the mid 2010's calligraphy trend that we'd ridden was breaking hard. We'd caught a wave of intense interest in calligraphy, driven by social media influencers like my wife who showed off their art on Instagram.
+My wife had been hustling for years and her energy was fading. But the core driver was consumer behavior. A bunch of competitors had cropped up, and while their products were inferior, they were cutting into our revenue. And to top it off, the mid 2010's calligraphy trend that we'd been riding was breaking hard. We'd caught a wave of intense interest in calligraphy, driven by social media influencers like my wife who showed off their art on Instagram.
 
 But the Instagram crowd was moving on. Search volume for "calligraphy class online" was dropping. We still ranked at or near the top of Google for all of the keywords we cared about, but traffic was dying out.
 
@@ -109,7 +109,7 @@ I got to work with a small team on [BoomPop.com](https://boompop.com).
 
 We started out very small and focused. Of course, we were also a bit of a mess, because we didn't have much process.
 
-The process developed slowly but gradually.
+Our process developed gradually.
 
 Eventually we were a company of 20+ people including 6 engineers. Our revenue was moving up-and-to-the-right, and we were building product that folks were using!
 
@@ -117,30 +117,30 @@ I spent my days swinging for the fences, and I mostly got to swing at strikes. I
 
 ## I was **not** in the driver's seat
 
-We eventually had to make a hard pivot.
+We had to make a hard pivot.
 
-Our original product was no longer growing, and stagnation is death in VC-land. A smaller business could've focused on milking every last dollar from that market, but BoomPop is VC-backed, so we had to pivot to another business model with much larger potential.
+Our original product was no longer growing. Stagnation is death in VC-land. A smaller business could've focused on milking every last dollar from that market, but BoomPop is VC-backed, so we had to pivot to another business model with much larger potential.
 
 We pivoted successfully, but it broke me.
 
-We changed everything, including my favorite parts of my job.
+We changed everything, including my favorite parts of the job.
 
-I was a full-stack developer again, working on a React/Node/AWS stack. I love React and Node, but AWS is less thrilling to work with. I got everything running well enough. It wasn't a deal breaker by any means... but it was a constant source of annoyance to debug our AWS stack issues. And if you've worked with AWS, you know how complex any fully-AWS application becomes. The simplest Hello World app with a database and auth would require ten minutes to deploy.
+I was a full-stack developer again, working on a React/Node/AWS stack. I love React and Node, but AWS is less thrilling to work with. I got everything running well enough. It wasn't a deal breaker by any means... but it was a constant source of annoyance to debug our AWS stack issues. And if you've worked with AWS, you know how complex any fully-AWS application becomes. The simplest Hello World app with a database and auth could require ten minutes to deploy.
 
 Eventually I lost the will to go on.
 
-Startups are a faith-based activity. You have to **believe**, and the moment you lost that belief, you're dead weight. I no longer looked forward to sitting down to work. I did it because I had a team to support and a sense of professional duty to the company.
+Startups are a faith-based activity. You have to **believe**, and you're dead weight the moment you lose that belief. I no longer looked forward to my work. I kept going because I had a team to support and a sense of professional duty to the company.
 
 ## VC-backed Pros
 
 - Stay specialized
-- If you hire well, you can work with amazing people
+- **If** you hire well, you can work with amazing people
 - The sky is the limit
 
 ## VC-backed Cons
 
 - A single iffy hire can ruin your company
-- The investors own you, literally
+- The investors own you—literally
 - Anything short of a home run will not produce large wealth
 - VCs routinely ruin good small businesses while trying to make them huge
 
@@ -148,13 +148,13 @@ Startups are a faith-based activity. You have to **believe**, and the moment you
 
 Equity deserves its own essay.
 
-Nobody seems to understand equity, and I sometimes doubt myself, but I'll try to hit the high points.
+Nobody seems to understand equity. I'll try to hit the high points.
 
 ## What percentage do you own?
 
 Equity is measured in "basis points", or 1/1000 shares of the company. You must **insist** on always knowing how many shares are outstanding at your company. 
 
-For instance, if you own 10 basis points—bps or "bips"—of a company, and it sell for $100MM, you can expect a $100k payout. The company would have to sell for $1B for you to make $1MM. Those are very big numbers, and its easy to forget that $100MM to $1B is a 10x growth in the business.
+For instance, if you own 10 basis points—bps or "bips"—of a company, and it sells for $100MM, you can expect a $100k payout. The company would have to sell for $1B for you to make $1MM. Those are very big numbers, and its easy to forget that $100MM to $1B is a 10x growth in the business.
 
 ## Dilution matters
 
@@ -162,7 +162,7 @@ If you join early enough—pre-Series A—you may get a grant for 50bps, or 50/1
 
 But wait! You joined early. The Series A round will likely dilute you 20%. And a Series B could easily diulte you another 20%. You're already down to 32bps. If you IPO after that Series B, you might actually make $320k for a $100MM valuation, or $3.2MM per $1B of valuation!
 
-But that's actually a very optimistic set of assumptions. Dilution is often much, much higher. A bad Series A raise could easily dilute you 70%. Ask me how I know.
+But that's an optimistic set of assumptions. Dilution is often much, much higher. A bad Series A raise could easily dilute you 70%. Ask me how I know.
 
 And the company doesn't have to tell you about any of this.
 
@@ -174,4 +174,4 @@ They're hiding something dirty if they play coy about shares outstanding.
 
 # Conclusion
 
-Bootstrapping is awesome and I hope to try it again someday. But for now, I need to feed my family and draw a salary. I can only hope that my equity pays out someday.
+Bootstrapping is awesome and I hope to try it again someday. But for now, I need to feed my family and draw a salary. I can only hope that my equity pays out in the next decade or two.

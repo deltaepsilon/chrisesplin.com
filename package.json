@@ -13,7 +13,8 @@
     "dev": "yarn start",
     "eleventy": "cd content && eleventy",
     "start": "yarn eleventy --serve --port=4000 --watch",
-    "build": "yarn eleventy && cp ./content/_site/ ./docs/ -r",
+    "build": "yarn eleventy && rm -rf ./docs && cp ./content/_site/ ./docs/ -r && yarn cname",
+    "cname": "echo 'www.chrisesplin.com' > ./docs/CNAME",
     "medium:export": "node bin/medium/export-medium.js"
   }
 }
