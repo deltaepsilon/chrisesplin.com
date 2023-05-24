@@ -160,7 +160,7 @@ For instance, if you own 10 basis points—bps or "bips"—of a company, and it 
 
 If you join early enough—pre-Series A—you may get a grant for 50bps, or 50/1000 of the company. So $100MM would net you $500k!
 
-But wait! You joined early. The Series A round will likely dilute you 20%. And a Series B could easily diulte you another 20%. You're already down to 32bps. If you IPO after that Series B, you might actually make $320k for a $100MM valuation, or $3.2MM per $1B of valuation!
+But wait! You joined early. The Series A round will likely dilute you 20%. And a Series B could easily dilute you another 20%. You're already down to 32bps. If you IPO after that Series B, you might actually make $320k for a $100MM valuation, or $3.2MM per $1B of valuation!
 
 But that's an optimistic set of assumptions. Dilution is often much, much higher. A bad Series A raise could easily dilute you 70%. Ask me how I know.
 
