@@ -42,7 +42,7 @@ We want to be led to the correct answer.
 
 Yes, Astro or Next or Nuxt or whatever are all awesome technologies. But they're awesome for certain use cases. And their landing pages are built to convince you to use them, not to tell you when NOT to use them.
 
-I used to consult for companies who were considering adopting Firebase.
+I used to consult for companies who wanted to use Firebase.
 
 I love Firebase with my whole heart, but it's not good for everything. So these companies would hire me, tell me their requirements, and I'd tell them to NOT use Firebase. Firebase is absolutely perfect... unless you need flexible data reporting or happen to have very structured, **relational** data... in which case, a relational database is a much better decision!
 
@@ -56,17 +56,17 @@ This is stupid. Really, really stupid.
 
 Find out what technologies the old guys are using, and learn those first. It doesn't need to be outdated, but it should never be experimental or "bleeding edge". Get extremely good with the best-supported, slightly boring technologies before becoming an early-adopter. You will save yourself immense pain.
 
-I was an early-adopter of a predecessor of TypeScript called CoffeeScript. It was so cool. I was a new dev and CoffeeScript looked like the future. So I learned CoffeeScript, wrote a bunch of code, and had to throw it all away a few years later when I realized that CoffeeScript was failing. 
+I was an early-adopter of CoffeeScript, a predecessor of TypeScript. It was so cool. I was a new dev and CoffeeScript looked like the future. So I learned CoffeeScript, wrote a bunch of code, and had to throw it all away a few years later when I realized that CoffeeScript was failing. 
 
-That's the thing. Technology is inherently experimental. The best systems rise to the top and stick around, but the vast, vast majority of tech projects fail.
+Technology is inherently experimental. The best systems rise to the top and stick around, but the vast, vast majority of tech projects fail.
 
 ## You focus on the short term
 
-When I adopted CoffeeScript, I had never worked on an aging codebase. I didn't know what it felt like to come back to a project two years later and have to make edits because Chrome dropped a feature or GCP was deprecating a Node.js version.
+I had never worked on an aging codebase when I adopted CoffeeScript. I didn't know what it felt like to come back to a project two years later and have to make edits because Chrome dropped a feature or GCP was deprecating a Node.js version.
 
 It's almost impossible to think long-term until you've lived long-term. You'll have to trust me on this one.
 
-Successful projects have long lifespans. Code rots. Dependencies get deprecated. 
+Successful projects have long lifespans. Code rots. Dependencies are deprecated. 
 
 Focus on fewer, more stable dependencies. The fewer the dependencies, the fewer upgrades you'll have to do. You'll have a bit more work to do today, but your project can run for years without touching it. I did the last big rewrite of Calligraphy.org in 2018 and it's still going strong. I make edits about once a year, usually to upgrade Node or fix some new browser bug... but the code is simple enough that I just run `yarn install && yarn dev` and I'm back where I started.
 
@@ -80,13 +80,13 @@ I am very serious and need to get this across clearly.
 
 Think about the most embarrassing thing that your best friend has ever done. Now try to think of the most embarrassing thing that an acquaintance has done. 
 
-We almost immediately forget about others mistakes unless they're truly egregious or affect us in a personal way. So get up in front of a crowd and give a talk. Make presentations about technologies you barely understand. It's cool. Nobody cares. Do it with a smile on your face, don't take yourself too seriously, and everyone will be rooting for you. And if you screw up... they'll forget within a day or two.
+We almost immediately forget about others' mistakes unless they're truly egregious or affect us in a personal way. So get up in front of a crowd and give a talk. Make presentations about technologies you barely understand. It's cool. Nobody cares. Do it with a smile on your face, don't take yourself too seriously, and everyone will be rooting for you. And if you screw up... they'll forget within a day or two.
 
 ## You can't put yourself 5 years into the future
 
 Our culture does a terrible job of teaching long-term thinking.
 
-Remember: you vastly overestimate how much you can accomplish in a year, and you vastly underestimate how much you can accomplish in five years.
+Remember: you vastly **overestimate** how much you can accomplish in a year, and you vastly **underestimate** how much you can accomplish in five years.
 
 You can become an entirely different person in five years. You can build a whole career, become an expert in something new, publish a book, launch a company... the possibilities are incredible.
 
@@ -94,11 +94,11 @@ But you can't do much of anything in a single year. You can start down lots of d
 
 Anything worth doing is going to take more than a year to master. Most things take 3-5 years. That's just how life is.
 
-Actually, 5 years is medium-term. 15 years is long-term. But we've got to start somewhere.\
+Actually, 5 years is medium-term. 15 years is long-term. But we've got to start somewhere.
 
-Make 1-year, 5-year, 10-year, and 15-year goals, then make them reality.
+Make 1-, 5-, 10-, and 15-year goals, then make them reality.
 
-## Nobody can pick winners, but you can be early to technologies that have already won
+## You can't pick winners, but you can be early to technologies that have already won
 
 Picking winners in tech is like picking winners in the stock market. 
 
@@ -108,4 +108,12 @@ Some people can, but you can't, so get over it.
 
 You can, however, pick technologies that have already won!
 
-So pick the existing winners and let others fight over the future. 
+Look for projects with tough competitors. You know that the problem space is important because there's plenty of competition, but you're not sure who the winner is yet. 
+
+For example, jQuery won front-end web dev for about five years, but almost immediately you saw MooTools, Prototype.js, Backbone, and Knockout all launch and start fighting for market share. It was an ugly fight for a long time, and nobody gained supremacy. You could have stuck with jQuery and been fine.
+
+But then Angular started to pull ahead and it was Angular vs Ember for quite a while. But Angular had made some mistakes and Google started on a v2 rewrite from scratch. In the meantime, React launched and started to gain a ton of market share. React rode a wave of hype for a while, but then it settled down and started to truly outpace the competition. React outlasted its own hype cycle. 
+
+That's when I learned React. I was actually a bit late to the party, but React had won and I couldn't deny it anymore.
+
+Don't be an early adopter, but don't wait too long to switch to the winning tech. You want to maximize the lifespan of your skills and the lifespan of your codebase, so be early-ish and learn to accept defeat when your tech choices start to fail. They don't often recover.
