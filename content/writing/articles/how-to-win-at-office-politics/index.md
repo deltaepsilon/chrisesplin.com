@@ -22,9 +22,11 @@ I posted a [Twitter thread](https://twitter.com/ChrisEsplin/status/1666899559740
 
 We tend to follow people because they're either technically proficient or socially proficient.
 
-Maybe 80% of successful leaders are technical leaders. They've risen through the ranks on their technical abilities and we trust them to lead us to technical success. They usually are not socially adept and we tolerate their lack of social skills.
+Maybe 80% of successful leaders are technical leaders. They've risen through the ranks on their technical abilities and we trust them to lead us to technical success. They're usually not socially adept and we tolerate their lack of social leadership.
 
 The other 20% of leader are socially adept. People like being around these leaders and want to work for them because they trust them personally.
+
+![Unicorn Leader](./images/leadership-styles.png)
 
 ## The Unicorn Leader
 
@@ -97,4 +99,3 @@ We all have strong proclivities. And human nature has remained unchanged for mil
 We're not going to overcome our worst habits and motivations without years of personal work. Instead, we should accept ourselves and those around us, just the way we are. Other people are part of the terrain. We're working on ourselves, but today, we're ego-driven and miserable to work with.
 
 Don't try to change others, but harness their momentum and motivations to guide them in the right direction. And put yourself in situations that favor your strengths. This is easy to say in the abstract. The challenge is applying these principles to tough situations.
-
