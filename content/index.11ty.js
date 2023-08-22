@@ -13,7 +13,7 @@ module.exports = class Index {
     return String.raw`
       <h3>Video</h3>
 
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/w0O5Ur1HH_8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/t2M_7PHxngk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
       <p>
           My videos are on <a href="https://www.youtube.com/ChrisEsplin" target="_blank" rel="noopener">YouTube</a>
