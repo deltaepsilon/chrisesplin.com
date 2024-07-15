@@ -1,0 +1,148 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Quiver Photos V2</title>
+      <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
+      <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
+      <link rel="stylesheet" href="/static/css/base.css"/>
+      <link rel="stylesheet" href="/static/css/project.shortcode.css"/>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6859198-21"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-6859198-21');
+      </script>
+    </head>
+    <body>
+      <header>
+        <a href="/">
+          <h1>chris esplin</h1>
+        </a>
+      </header>
+
+      <div id="content">
+      <div class="project">
+        <style>
+          .project {
+            max-width: calc(100vw - 1em);
+            margin: auto;
+          }
+
+          .project-content {
+            max-width: calc(100vw - 2em);
+            width: 800px;
+            margin-left: 0.5em;
+          }
+
+          .project .project-shortcode {
+            max-width: 400px;
+            margin: 4em 1em;
+          }
+
+          .project-content img {
+            width: 300px;
+          }
+        </style>
+
+        
+    <div class="project-shortcode">
+      <div class="row">
+        <a class="logo" href="/projects/quiver-photos-v2">
+          <img src="/static/images/logos/quiver-photos-v2-logo.png" alt="QuiverPhotos V2"/>
+        </a>
+      </div>
+
+      <div class="row">
+        <a class="logotype" href="/projects/quiver-photos-v2">
+          <img src="/static/images/logotypes/quiver-photos-v2-logotype.png" alt="QuiverPhotos V2"/>
+        </a>
+      </div>
+      
+      <div class="row">
+        <ul>
+          <li>
+            > 300 hours
+          </li>
+          <li>
+            Jan 2024 - July 2024
+          </li>
+          <li>
+            <a href="https://www.quiverphotos.com/" target="_blank" rel="noopener">https://www.quiverphotos.com/</a>
+          </li>
+          <li>
+            <h4>Contributors</h4>
+            
+            <ul>
+              <li> <a href="https://twitter.com/@ChrisEsplin" target="_blank" rel="noopener">@ChrisEsplin</a></li>
+            </ul>
+          </li>
+          <li>
+            <h4>Technologies</h4>
+            
+            <ul>
+              <li>Firebase</li><li>Wails</li><li>React</li><li>Golang</li><li>Panda CSS</li><li>PocketBase</li>
+            </ul>
+          </li>
+
+        </ul>
+        
+        
+      </div>
+
+      <a href="/projects/quiver-photos-v2"></a>
+    </div>
+  
+        
+        <div class="project-content"><h3>Project Summary</h3>
+<p>I started Quiver Photos v1 back in January of 2022. It was an exceptionally challenging project, and I was never satisfied with the result.</p>
+<p>The v1 app used a combination of web app and command line tool, known as the &quot;desktop app&quot;, to load media item records from the Google Photos API and then download them using the API.</p>
+<p>The Google Photos API stripped geo location EXIF metadata, and I misunderstood how to recover Apple Live Photos. So those two issues stuck in my craw.</p>
+<p>Even worse, the API throttled me at 10k calls a month. Once it started to get more popular, I'd get innundated by support emails from people who couldn't import their libraries. They'd have to wait until the API limits reset in a week or two.</p>
+<p>The only solution would be to rewrite the entire thing as a desktop application that scrapes photos.google.com directly.</p>
+<h3>Technology</h3>
+<p>For the desktop application, I chose PocketBase as the database solution and Wails for the desktop application itself. Wails is written in a combination of Golang and React. It runs on a tiny web client that's just enough to run React.</p>
+<p>I had to learn Go for this project. Thankfully, GitHub CoPilot is incredible at Go. It was my pair programming buddy through the entire adventure. It made plenty of mistakes, but it reliably solved the easy problems and helped me work toward the hard solutions.</p>
+<p>PocketBase is awesome. It's easy to use and had very few bugs. It's been developed to cover a huge range of use cases, so I never had to reach for any other data solutions.</p>
+<p>The hardest part has been maintaining MacOS, Windows and Linux compatibility. All three platforms are working great in my own testing, but I still get support emails from folks who are having terrible issues. That leaves me asking questions to deduce what the issue might be, shipping a potential fix, and asking for feedback. It's a brutal loop, and I hope to be done with it soon.</p>
+</div>
+
+      </div>
+    </div>
+
+      <footer>
+        <ul>
+          <li>
+            <a href="/resume">Resume</a>
+          </li>
+          <li>
+            <a href="/projects">Projects</a>
+          </li>
+          <li>
+            <a href="/writing">Writing</a>
+          </li>
+          <li>
+            <a href="mailto:chris@christopheresplin.com?subject=ChrisEsplin.com%20inquiry&body=Hey%20Chris!%0A%0AI%20found%20you%20on%20ChrisEsplin.com%20and%20thought%20we%20might%20be%20able%20to%20work%20together.%0A%0A...">Email</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/chrisesplin">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/ChrisEsplin">YouTube</a>
+          </li>
+          <li>
+            <a href="https://github.com/deltaepsilon">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>
+          </li>
+        </ul>
+      </footer>
+    </body>
+    </html>
+  
