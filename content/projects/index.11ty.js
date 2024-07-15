@@ -13,15 +13,11 @@ module.exports = class Projects {
       <h3>Projects</h3>
 
       <p>
-        I don't own pets. I own domains.
+        I work as a software engineer and fractional startup CTO. I've developed a bit of a specialty around rescuing React projects that are in trouble.
       </p>
       
       <p>
-        I iterate on the <a href="/projects">projects</a> that I care about.
-      </p>
-
-      <p>
-        Calligraphy has been rewritten four times since 2011. HIIT Clock is on it's second iteration.
+        I pride myself in my ability to ship my projects. I work can work very slowly without losing steam. See my <a href="/projects">projects list</a> for the details.
       </p>
 
       <div class="project-shortcodes-wrapper">

@@ -13,11 +13,12 @@ module.exports = class Index {
     return String.raw`
       <h3>Video</h3>
 
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/t2M_7PHxngk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
       <p>
           My videos are on <a href="https://www.youtube.com/ChrisEsplin" target="_blank" rel="noopener">YouTube</a>
       </p>
+
+      
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/t2M_7PHxngk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
       <h3>Writing</h3>
 
@@ -46,21 +47,17 @@ module.exports = class Index {
       <h3>Projects</h3>
 
       <p>
-        I don't own pets. I own domains.
+        I work as a software engineer and fractional startup CTO. I've developed a bit of a specialty around rescuing troubled React projects and JavaScript/TypeScript projects.
       </p>
-
+      
       <p>
-        I iterate on the <a href="/projects">projects</a> that I care about.
-      </p>
-
-      <p>
-        Calligraphy has been rewritten four times since 2011. HIIT Clock is on it's second iteration.
+        I pride myself in my ability to ship. I'm perfectly happy to chip away at an application for months, averaging 1-2 hours/day. I find that moving slowly allows me time to see around corners. I don't rush into solutions. See my <a href="/projects">projects list</a> for the details.
       </p>
 
       <div class="project-shortcodes-wrapper">
         ${Object.values(projects)
-          .map((project) => this.Project(project))
-          .join('')}
+        .map((project) => this.Project(project))
+        .join('')}
       </div>
 
       <img src="https://firebasestorage.googleapis.com/v0/b/chris-esplin.appspot.com/o/assets%2Fesplin-family-2015.jpg?alt=media&token=4edba376-0517-4e98-ad71-eb5cfcc86339" alt="Esplin family circa 2016"/>

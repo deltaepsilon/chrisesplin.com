@@ -1,4 +1,26 @@
 module.exports = {
+  THERAPY_ANIMAL_HUB: {
+    name: 'Therapy Animal Hub',
+    time: 'Jan 2024 - Present',
+    hours: '> 200',
+    contributors: ['@ChrisEsplin'],
+    technologies: ['React Server Components', 'Next.js', 'Panda CSS', 'Firebase'],
+    url: '/projects/therapy-animal-hub',
+    projectUrl: 'https://www.therapyanimalhub.com/',
+    logotype: '/static/images/logotypes/therapy-animal-hub-logotype.png',
+    logo: '/static/images/logos/therapy-animal-hub-logo.png',
+  },
+  QUIVER_PHOTOS_V2: {
+    name: 'QuiverPhotos V2',
+    time: 'Jan 2024 - July 2024',
+    hours: '> 300',
+    contributors: ['@ChrisEsplin'],
+    technologies: ['Firebase', 'Wails', 'React', 'Golang', 'Panda CSS', 'PocketBase'],
+    url: '/projects/quiver-photos-v2',
+    projectUrl: 'https://www.quiverphotos.com/',
+    logotype: '/static/images/logotypes/quiver-photos-v2-logotype.png',
+    logo: '/static/images/logos/quiver-photos-v2-logo.png',
+  },
   QUIVER_PHOTOS: {
     name: 'QuiverPhotos',
     time: 'October 2022 - April 2023',
