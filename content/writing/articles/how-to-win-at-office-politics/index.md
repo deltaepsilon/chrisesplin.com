@@ -30,7 +30,7 @@ The other 20% of leader are socially adept. People like being around these leade
 
 ## The Unicorn Leader
 
-There's some Venn diagram intersection of technical and social leaders. That's where I'd like to be. I've only met a few leaders who tick both of those boxes, and working for them is a transcendant experience. I trust them technically and personally. I'd follow them from company to company if I could.
+There's a Venn diagram intersection of technical and social leaders. That's where I'd like to be. I've only met a few leaders who tick both of those boxes, and working for them is a transcendant experience. I trust them technically and personally. I'd follow them from company to company if I could.
 
 ## Working with non-Unicorns
 
