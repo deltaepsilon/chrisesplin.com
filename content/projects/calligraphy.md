@@ -12,7 +12,7 @@ Melissa is a calligrapher and had begun teaching local classes. I was just learn
 
 I took a month off between jobs and built the first iteration of IStillLoveCalligraphy.com. We launched in early 2012 and I went full-time on the project in the Spring of 2013. I stayed on the project full-time until our sales faltered in 2017.
 
-Calligraphy.org earned our family well over \$200k/year through its peak. Unfortunately, market forces and our own waning interest in marketing led to a dramatic loss in revenue from 2016 through 2017. I re-emphasized my consulting business during this time, but that business had its hiccups as well, leading me back to full-time employment with Pluralsight and then Workfront
+Calligraphy.org earned our family well over $200k/year through its peak. Unfortunately, market forces and our own waning interest in marketing led to a dramatic loss in revenue from 2016 through 2017. I re-emphasized my consulting business during this time, but that business had its hiccups as well, leading me back to full-time employment with Pluralsight and then Workfront
 
 ### Technology
 
