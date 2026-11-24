@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('static');
+  eleventyConfig.addPassthroughCopy('robots.txt');
   eleventyConfig.addPassthroughCopy('writing/articles/**/*.png');
   eleventyConfig.addPassthroughCopy('writing/medium/**/*.png');
 
