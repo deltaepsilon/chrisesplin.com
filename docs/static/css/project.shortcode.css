@@ -11,6 +11,13 @@
   margin: 1em;
 }
 
+.project-shortcode .brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 224px;
+}
+
 .project-shortcode .logo a {
   text-decoration: none;
 }

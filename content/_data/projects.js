@@ -15,7 +15,7 @@ module.exports = {
     technologies: ['Next.js', 'React', 'Firebase', 'NetSapiens', 'Bandwidth', 'Grandstream', 'Gemini'],
     url: '/projects/wiley',
     projectUrl: 'https://www.wileyphone.com/',
-    logotype: '/static/images/logotypes/wiley-logotype.png',
+    logotype: '/static/images/logotypes/wiley-logotype.svg',
   },
   TRIKIN: {
     name: 'Trikin',

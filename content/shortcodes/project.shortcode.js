@@ -1,17 +1,19 @@
 module.exports = function Project(project) {
   return String.raw`
     <div class="project-shortcode">
-      ${project.logo ? String.raw`
-      <div class="row">
-        <a class="logo" href="${project.url}">
-          <img src="${project.logo}" alt="${project.name}"/>
-        </a>
-      </div>` : ''}
+      <div class="brand">
+        ${project.logo ? String.raw`
+        <div class="row">
+          <a class="logo" href="${project.url}">
+            <img src="${project.logo}" alt="${project.name}"/>
+          </a>
+        </div>` : ''}
 
-      <div class="row">
-        <a class="logotype" href="${project.url}">
-          <img src="${project.logotype}" alt="${project.name}"/>
-        </a>
+        <div class="row">
+          <a class="logotype" href="${project.url}">
+            <img src="${project.logotype}" alt="${project.name}"/>
+          </a>
+        </div>
       </div>
       
       <div class="row">
