@@ -7,20 +7,20 @@ module.exports = class Index {
       layout: 'page',
       title: 'Chris Esplin',
       description:
-        'Chris Esplin is a Utah-based Fractional CTO, principal full-stack engineer (TypeScript, React, Next.js, Go, Firebase, Stripe Connect), and founder of Utah Dev Co.',
+        'Chris Esplin is a Utah-based Fractional CTO, principal full-stack engineer (TypeScript, React, Next.js, Go, Firebase, Stripe Connect), and founder of UtahDevCo.',
     };
   }
 
   render() {
     return String.raw`
-      <h2>Fractional CTO and founder of <a href="https://www.utahdevco.com">Utah Dev Co</a></h2>
+      <h2>Fractional CTO and founder of <a href="https://www.utahdevco.com">UtahDevCo</a></h2>
 
       <p>
         I&apos;m a principal full-stack software architect in Draper and Salt Lake City, Utah with 15+ years of production experience across TypeScript, React, Next.js, Go, Firebase, Postgres, and Stripe Connect.
       </p>
 
       <p>
-        For Seed and Series A startups, see my <a href="/fractional-cto">Fractional CTO and architecture advisory</a> page for MVP stabilization, technical due diligence, and scaling AI-built codebases. For Utah non-tech businesses ($2M+ revenue), my studio <a href="https://www.utahdevco.com">Utah Dev Co</a> automates back-office workflows for home services and wholesale/distribution companies with a <a href="https://www.utahdevco.com/how-it-works">$0-down audit and 50% Year-1 savings pricing</a>.
+        For Seed and Series A startups, see my <a href="/fractional-cto">Fractional CTO and architecture advisory</a> page for MVP stabilization, technical due diligence, and scaling AI-built codebases. For Utah non-tech businesses ($2M+ revenue), my studio <a href="https://www.utahdevco.com">UtahDevCo</a> automates back-office workflows for home services and wholesale/distribution companies with a <a href="https://www.utahdevco.com/how-it-works">$0-down audit and 50% Year-1 savings pricing</a>.
       </p>
 
       <h3>Video</h3>
@@ -52,7 +52,7 @@ module.exports = class Index {
           <a href="/fractional-cto">Fractional CTO</a>
         </li>
         <li>
-          <a href="https://www.utahdevco.com">Utah Dev Co</a>
+          <a href="https://www.utahdevco.com">UtahDevCo</a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/epsilon/">LinkedIn</a>

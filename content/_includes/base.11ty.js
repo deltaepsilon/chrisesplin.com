@@ -1,9 +1,9 @@
 module.exports = function Base(params) {
   const title = params.title || params.name || 'Chris Esplin';
-  const fullTitle = title === 'Chris Esplin' ? 'Chris Esplin — Fractional CTO & Founder of Utah Dev Co' : `${title} | Chris Esplin`;
+  const fullTitle = title === 'Chris Esplin' ? 'Chris Esplin — Fractional CTO & Founder of UtahDevCo' : `${title} | Chris Esplin`;
   const description =
     params.description ||
-    'Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of Utah Dev Co.';
+    'Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.';
   const pageUrl = params.page && params.page.url ? params.page.url : '/';
   const canonicalUrl = `https://www.chrisesplin.com${pageUrl}`;
 
@@ -34,12 +34,12 @@ module.exports = function Base(params) {
     ],
     worksFor: {
       '@type': 'Organization',
-      '@id': 'https://utahdevco.com/#organization',
-      name: 'Utah Dev Co',
-      url: 'https://utahdevco.com',
+      '@id': 'https://www.utahdevco.com/#organization',
+      name: 'UtahDevCo',
+      url: 'https://www.utahdevco.com',
     },
     sameAs: [
-      'https://utahdevco.com',
+      'https://www.utahdevco.com',
       'https://github.com/deltaepsilon',
       'https://www.linkedin.com/in/epsilon/',
       'https://www.youtube.com/ChrisEsplin',
@@ -81,7 +81,7 @@ module.exports = function Base(params) {
             <a href="/fractional-cto">Fractional CTO</a>
           </li>
           <li>
-            <a href="https://utahdevco.com">Utah Dev Co</a>
+            <a href="https://www.utahdevco.com">UtahDevCo</a>
           </li>
           <li>
             <a href="/pages/resume">Resume</a>

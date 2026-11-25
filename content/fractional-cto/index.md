@@ -9,7 +9,7 @@ date: 2026-11-24
 
 I work with Seed and Series A founders in Utah (Silicon Slopes and Salt Lake City) and remotely to provide senior technical leadership, stabilize AI-built or contractor MVPs, and architect production systems without the $250,000+ commitment of a full-time VP of Engineering.
 
-If you run a non-tech operational business in Utah and want to automate manual workflows, visit my commercial studio [Utah Dev Co](https://www.utahdevco.com) ($0-down Workflow & ROI Audit, 50% Year-1 savings pricing).
+If you run a non-tech operational business in Utah and want to automate manual workflows, visit my commercial studio [UtahDevCo](https://www.utahdevco.com) ($0-down Workflow & ROI Audit, 50% Year-1 savings pricing).
 
 ### Engagement models
 
