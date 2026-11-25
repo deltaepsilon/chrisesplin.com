@@ -1,11 +1,12 @@
 module.exports = function Project(project) {
   return String.raw`
     <div class="project-shortcode">
+      ${project.logo ? String.raw`
       <div class="row">
         <a class="logo" href="${project.url}">
           <img src="${project.logo}" alt="${project.name}"/>
         </a>
-      </div>
+      </div>` : ''}
 
       <div class="row">
         <a class="logotype" href="${project.url}">
@@ -15,9 +16,6 @@ module.exports = function Project(project) {
       
       <div class="row">
         <ul>
-          <li>
-            ${project.hours} hours
-          </li>
           <li>
             ${project.time}
           </li>

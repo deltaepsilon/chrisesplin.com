@@ -50,6 +50,7 @@
 
         
     <div class="project-shortcode">
+      
       <div class="row">
         <a class="logo" href="/projects/quiver-photos">
           <img src="/static/images/logos/quiver-photos-logo.png" alt="QuiverPhotos"/>
@@ -65,13 +66,10 @@
       <div class="row">
         <ul>
           <li>
-            > 200 hours
+            January 2022 - Present
           </li>
           <li>
-            October 2022 - April 2023
-          </li>
-          <li>
-            <a href="https://photos.chrisesplin.com/" target="_blank" rel="noopener">https://photos.chrisesplin.com/</a>
+            <a href="https://www.quiverphotos.com/" target="_blank" rel="noopener">https://www.quiverphotos.com/</a>
           </li>
           <li>
             <h4>Contributors</h4>
@@ -84,7 +82,7 @@
             <h4>Technologies</h4>
             
             <ul>
-              <li>Firebase</li><li>GitHub Actions</li><li>React</li><li>Next.js</li><li>Emotion CSS</li><li>LevelDB</li><li>WebSockets</li>
+              <li>Golang</li><li>Wails</li><li>PocketBase</li><li>React</li><li>Next.js</li><li>Firebase</li><li>Panda CSS</li>
             </ul>
           </li>
 
@@ -99,16 +97,18 @@
         
         <div class="project-content"><h3>Project Summary</h3>
 <p>Google Photos is great, but it's a black hole for your media.</p>
-<p>My attempts to extract my media from Google Photos for archival backup purposes were stymied pretty quickly by Google's official &quot;Google Takeout&quot; backup process. It was painful. It was incomplete. I wanted to fix it.</p>
-<p>I set out to fix it as best I could. The fix was not fully satisfactory, because the Google Photos API is lacking. But I gave it my all and learned a lot of new technologies along the way.</p>
+<p>Google Takeout was painful and incomplete when I tried to use it to archive my own library, so I started Quiver Photos in January 2022 to fix it. The project has been through three major versions since.</p>
+<h4>v1: the Google Photos API</h4>
+<p>The first version paired a web app with a command-line &quot;desktop app&quot;. It loaded media item records from the Google Photos API and downloaded them through the same API.</p>
+<p>The API was the problem. It strips geo-location EXIF data, it won't return Apple Live Photos or full-quality video, and it throttled me at 10k calls a month. Once the app got popular, I was buried in support emails from people who had to wait a week or two for the limit to reset before they could finish importing. Google also wouldn't verify my auth implementation for a project this small.</p>
+<h4>v2: a desktop app</h4>
+<p>The only real fix was a desktop application that works from photos.google.com directly. I rewrote everything in 2024 with Wails (Go plus a small React client) and PocketBase as the local database.</p>
+<h4>v3</h4>
+<p>The current version is a Go desktop app with a terminal UI, alongside the web app and Firebase backend.</p>
 <h3>Technology</h3>
-<p>Getting the data out of Google Photos was a pain, but I figured out a way to do it with recursively-called Firebase Cloud Functions. The function will page through the results and write them to the Firebase Realtime Database for future use.</p>
-<p>The hard part was shipping a desktop daemon.</p>
-<p>There's no way to write EXIF data to images and video from a browser. I use WebSockets to stream the Google Photos Media Items to a Node.js process running on the client computer. The Node.js process stores the data in a LevelDB instance on the host machine and starts downloading files.</p>
-<p>Each file gets marked with some custom EXIF data so that it can be related back to the original Media Item from Google Photos. This prevents duplicate downloads and enables download restarts.</p>
-<p>This project ran into a raft of nasty third-party limitations that I only partially overcame. The product works, but not in the perfect way that I'd envisioned. It can't recover lat/long EXIF fields because Google Photos won't return them via that API. It also can't reconsitute Apple's Motion Photos correctly, because, again, the Google Photos API won't return a motion photo. Video isn't full quality either due to the Google Photos API.</p>
-<p>And of course Google has little interest in supporting small projects like this one, so they won't verify my auth implementation. THANKS GOOGLE.</p>
-<p>On the plus side, I can now recover all of my photos with EXIF data!</p>
+<p>v1 paged through the Google Photos API with recursively-called Firebase Cloud Functions and wrote the results to the Firebase Realtime Database. A browser can't write EXIF data, so the web app streamed media items over WebSockets to a Node.js process on the user's machine. That process stored them in LevelDB and tagged each downloaded file with custom EXIF data that tied it back to the original media item, which prevented duplicate downloads and let interrupted downloads resume.</p>
+<p>From v2 on, the desktop app is Go. I had to learn Go for this project, and GitHub Copilot was my pair programmer the whole way. It made plenty of mistakes, but it reliably solved the easy problems and helped me work toward the hard ones. PocketBase has been easy to use and had very few bugs.</p>
+<p>The hardest part is keeping macOS, Windows and Linux all working. Everything passes in my own testing, and I still get support emails from people with problems I can't reproduce, which means asking questions, shipping a likely fix and waiting for feedback.</p>
 </div>
 
       </div>

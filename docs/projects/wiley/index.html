@@ -4,12 +4,12 @@
     <head profile="http://www.w3.org/2005/10/profile">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Quiver Photos V2 | Chris Esplin</title>
+      <title>Wiley | Chris Esplin</title>
       <meta name="description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <link rel="canonical" href="https://www.chrisesplin.com/projects/quiver-photos-v2/">
-      <meta property="og:title" content="Quiver Photos V2 | Chris Esplin">
+      <link rel="canonical" href="https://www.chrisesplin.com/projects/wiley/">
+      <meta property="og:title" content="Wiley | Chris Esplin">
       <meta property="og:description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <meta property="og:url" content="https://www.chrisesplin.com/projects/quiver-photos-v2/">
+      <meta property="og:url" content="https://www.chrisesplin.com/projects/wiley/">
       <meta property="og:type" content="website">
       <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
       <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
@@ -50,28 +50,21 @@
 
         
     <div class="project-shortcode">
-      <div class="row">
-        <a class="logo" href="/projects/quiver-photos-v2">
-          <img src="/static/images/logos/quiver-photos-v2-logo.png" alt="QuiverPhotos V2"/>
-        </a>
-      </div>
+      
 
       <div class="row">
-        <a class="logotype" href="/projects/quiver-photos-v2">
-          <img src="/static/images/logotypes/quiver-photos-v2-logotype.png" alt="QuiverPhotos V2"/>
+        <a class="logotype" href="/projects/wiley">
+          <img src="/static/images/logotypes/wiley-logotype.png" alt="Wiley"/>
         </a>
       </div>
       
       <div class="row">
         <ul>
           <li>
-            > 300 hours
+            February 2026 - Present
           </li>
           <li>
-            Jan 2024 - July 2024
-          </li>
-          <li>
-            <a href="https://www.quiverphotos.com/" target="_blank" rel="noopener">https://www.quiverphotos.com/</a>
+            <a href="https://www.wileyphone.com/" target="_blank" rel="noopener">https://www.wileyphone.com/</a>
           </li>
           <li>
             <h4>Contributors</h4>
@@ -84,7 +77,7 @@
             <h4>Technologies</h4>
             
             <ul>
-              <li>Firebase</li><li>Wails</li><li>React</li><li>Golang</li><li>Panda CSS</li><li>PocketBase</li>
+              <li>Next.js</li><li>React</li><li>Firebase</li><li>NetSapiens</li><li>Bandwidth</li><li>Grandstream</li><li>Gemini</li>
             </ul>
           </li>
 
@@ -93,21 +86,16 @@
         
       </div>
 
-      <a href="/projects/quiver-photos-v2"></a>
+      <a href="/projects/wiley"></a>
     </div>
   
         
         <div class="project-content"><h3>Project Summary</h3>
-<p>I started Quiver Photos v1 back in January of 2022. It was an exceptionally challenging project, and I was never satisfied with the result.</p>
-<p>The v1 app used a combination of web app and command line tool, known as the &quot;desktop app&quot;, to load media item records from the Google Photos API and then download them using the API.</p>
-<p>The Google Photos API stripped geo location EXIF metadata, and I misunderstood how to recover Apple Live Photos. So those two issues stuck in my craw.</p>
-<p>Even worse, the API throttled me at 10k calls a month. Once it started to get more popular, I'd get innundated by support emails from people who couldn't import their libraries. They'd have to wait until the API limits reset in a week or two.</p>
-<p>The only solution would be to rewrite the entire thing as a desktop application that scrapes photos.google.com directly.</p>
+<p><a href="https://www.wileyphone.com/">Wiley</a> makes WiFi home phones for kids and families. Parents decide who the phone can call and who can call it, and the phone gets a real local number.</p>
+<p>I built the parent web app. Parents sign up, pick a phone number, and manage approved contacts, call blocking, spam blocking, quiet hours, call forwarding, voicemail, speed dial and Enhanced 911 addresses. The app also handles subscriptions and billing.</p>
 <h3>Technology</h3>
-<p>For the desktop application, I chose PocketBase as the database solution and Wails for the desktop application itself. Wails is written in a combination of Golang and React. It runs on a tiny web client that's just enough to run React.</p>
-<p>I had to learn Go for this project. Thankfully, GitHub CoPilot is incredible at Go. It was my pair programming buddy through the entire adventure. It made plenty of mistakes, but it reliably solved the easy problems and helped me work toward the hard solutions.</p>
-<p>PocketBase is awesome. It's easy to use and had very few bugs. It's been developed to cover a huge range of use cases, so I never had to reach for any other data solutions.</p>
-<p>The hardest part has been maintaining MacOS, Windows and Linux compatibility. All three platforms are working great in my own testing, but I still get support emails from folks who are having terrible issues. That leaves me asking questions to deduce what the issue might be, shipping a potential fix, and asking for feedback. It's a brutal loop, and I hope to be done with it soon.</p>
+<p>The app is Next.js and React on Firebase App Hosting, with Firestore and Cloud Functions behind it.</p>
+<p>Most of the work is telephony integration. Phone numbers and E911 records come from Bandwidth. Calling features map onto NetSapiens answering rules, timeframes and phonebooks. The Grandstream handsets pick up speed dial and line settings through zero-touch provisioning. Customer support runs through a knowledge base and an AI assistant built on Gemini.</p>
 </div>
 
       </div>

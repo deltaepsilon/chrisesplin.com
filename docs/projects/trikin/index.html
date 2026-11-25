@@ -4,12 +4,12 @@
     <head profile="http://www.w3.org/2005/10/profile">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>HIIT Clock | Chris Esplin</title>
+      <title>Trikin | Chris Esplin</title>
       <meta name="description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <link rel="canonical" href="https://www.chrisesplin.com/projects/hiit-clock/">
-      <meta property="og:title" content="HIIT Clock | Chris Esplin">
+      <link rel="canonical" href="https://www.chrisesplin.com/projects/trikin/">
+      <meta property="og:title" content="Trikin | Chris Esplin">
       <meta property="og:description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <meta property="og:url" content="https://www.chrisesplin.com/projects/hiit-clock/">
+      <meta property="og:url" content="https://www.chrisesplin.com/projects/trikin/">
       <meta property="og:type" content="website">
       <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
       <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
@@ -50,28 +50,21 @@
 
         
     <div class="project-shortcode">
-      <div class="row">
-        <a class="logo" href="/projects/hiit-clock">
-          <img src="/static/images/logos/hiit-clock-logo.png" alt="HIIT Clock"/>
-        </a>
-      </div>
+      
 
       <div class="row">
-        <a class="logotype" href="/projects/hiit-clock">
-          <img src="/static/images/logotypes/hiit-clock-logotype.png" alt="HIIT Clock"/>
+        <a class="logotype" href="/projects/trikin">
+          <img src="/static/images/logotypes/trikin-logotype.svg" alt="Trikin"/>
         </a>
       </div>
       
       <div class="row">
         <ul>
           <li>
-            255 hours
+            April 2025 - Present
           </li>
           <li>
-            February - September 2019
-          </li>
-          <li>
-            <a href="https://www.hiitclock.com/" target="_blank" rel="noopener">https://www.hiitclock.com/</a>
+            <a href="https://www.trikin.co/" target="_blank" rel="noopener">https://www.trikin.co/</a>
           </li>
           <li>
             <h4>Contributors</h4>
@@ -84,7 +77,7 @@
             <h4>Technologies</h4>
             
             <ul>
-              <li>Firebase</li><li>Google Cloud Build</li><li>Docker</li><li>React</li><li>Next.js</li>
+              <li>Next.js</li><li>React</li><li>Cloudflare Workers</li><li>Cloudflare D1</li><li>Drizzle</li><li>Auth.js</li>
             </ul>
           </li>
 
@@ -93,21 +86,16 @@
         
       </div>
 
-      <a href="/projects/hiit-clock"></a>
+      <a href="/projects/trikin"></a>
     </div>
   
         
         <div class="project-content"><h3>Project Summary</h3>
-<p>I use HIIT Clock nearly every weekday.</p>
-<p>I built the app for myself after getting fed up with the sad state of Android workout timers.</p>
-<p>The is the second iteration of HIIT Clock. The first one was great, but the code wasn't aging very well. It was originally written in Polymer 2.0, and the Polymer project was coming to a close. The original app wasn't worth iterating on, so I rewrote it from scratch.</p>
+<p><a href="https://www.trikin.co/">Trikin Capital</a> buys residential leasing commission receivables from real estate brokerages and their agents, so agents get paid without waiting months for property managers to pay out.</p>
+<p>I built the platform end to end: agent applications, underwriting, e-signature of the purchase agreements, broker and admin dashboards, payouts, bank statement reconciliation and accounting exports.</p>
 <h3>Technology</h3>
-<p>Of course I started with Firebase and Google Cloud Platform.</p>
-<p>I layered on React and Next.js with heavy use of Chrome-specific browser APIs. It's meant to be run on an Android Chrome browser.</p>
-<p>It's a full-blown Progressive Web App (PWA), meaning that users can &quot;save to homescreen&quot; and use HIIT Clock as if it were a native Android app. It's very slick.</p>
-<p>Chromecast APIs also came into play. I lift weights in my basement with a TV on the wall, and I wanted to cast my timers up to the TV.</p>
-<p><img src="/static/images/chromecast-tv.jpg" alt="chromecast">
-<img src="/static/images/hiit-clock-screenshot.png" alt="chromecast"></p>
+<p>Trikin runs Next.js on Cloudflare Workers through OpenNext, with Cloudflare D1 as the database, Drizzle as the ORM and Auth.js for sign-in.</p>
+<p>The hard parts are the money and the paperwork. Purchase amounts and fees are stored in integer cents, signed agreements are rendered once and content-addressed so they can be reproduced exactly later, and the rules from the legal agreements are enforced as database constraints so a bad write fails instead of landing.</p>
 </div>
 
       </div>

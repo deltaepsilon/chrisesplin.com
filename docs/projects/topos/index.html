@@ -4,12 +4,12 @@
     <head profile="http://www.w3.org/2005/10/profile">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Colossal | Chris Esplin</title>
+      <title>Topos | Chris Esplin</title>
       <meta name="description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <link rel="canonical" href="https://www.chrisesplin.com/projects/colossal/">
-      <meta property="og:title" content="Colossal | Chris Esplin">
+      <link rel="canonical" href="https://www.chrisesplin.com/projects/topos/">
+      <meta property="og:title" content="Topos | Chris Esplin">
       <meta property="og:description" content="Chris Esplin is a Draper / Salt Lake City, Utah Fractional CTO, principal full-stack software architect (TypeScript, React, Next.js, Go, Firebase), and founder of UtahDevCo.">
-      <meta property="og:url" content="https://www.chrisesplin.com/projects/colossal/">
+      <meta property="og:url" content="https://www.chrisesplin.com/projects/topos/">
       <meta property="og:type" content="website">
       <link rel="icon" type="image/png" href="/static/images/logos/chrisesplin-logo.png">
       <link rel="stylesheet" href="https://use.typekit.net/ytf5tsl.css">
@@ -50,41 +50,34 @@
 
         
     <div class="project-shortcode">
-      <div class="row">
-        <a class="logo" href="/projects/colossal">
-          <img src="/static/images/logos/colossal-logo.png" alt="Colossal"/>
-        </a>
-      </div>
+      
 
       <div class="row">
-        <a class="logotype" href="/projects/colossal">
-          <img src="/static/images/logotypes/colossal-logotype.png" alt="Colossal"/>
+        <a class="logotype" href="/projects/topos">
+          <img src="/static/images/logotypes/topos-logotype.svg" alt="Topos"/>
         </a>
       </div>
       
       <div class="row">
         <ul>
           <li>
-            197 hours
+            March 2026 - Present
           </li>
           <li>
-            January - March 2020
-          </li>
-          <li>
-            <a href="https://www.colossal.tools" target="_blank" rel="noopener">https://www.colossal.tools</a>
+            <a href="https://www.toposmodel.com/" target="_blank" rel="noopener">https://www.toposmodel.com/</a>
           </li>
           <li>
             <h4>Contributors</h4>
             
             <ul>
-              <li> <a href="https://twitter.com/@ChrisEsplin" target="_blank" rel="noopener">@ChrisEsplin</a></li><li> <a href="https://twitter.com/@Melissapher" target="_blank" rel="noopener">@Melissapher</a></li>
+              <li> <a href="https://twitter.com/@ChrisEsplin" target="_blank" rel="noopener">@ChrisEsplin</a></li>
             </ul>
           </li>
           <li>
             <h4>Technologies</h4>
             
             <ul>
-              <li>Firebase</li><li>BigQuery</li><li>Google Cloud Build</li><li>Docker</li><li>React</li><li>Next.js</li>
+              <li>Next.js</li><li>React</li><li>Firebase</li><li>Turso</li><li>Gemini</li><li>Vercel AI SDK</li><li>Turborepo</li>
             </ul>
           </li>
 
@@ -93,30 +86,16 @@
         
       </div>
 
-      <a href="/projects/colossal"></a>
+      <a href="/projects/topos"></a>
     </div>
   
         
         <div class="project-content"><h3>Project Summary</h3>
-<p>I built Colossal to enable multi-channel marketing/messaging across a variety of platforms.</p>
-<p>Publishers create feeds and ask their followers to subscribe to those feeds. Subscribers choose where they receive the feed. Initial channel support includes</p>
-<ul>
-<li>email</li>
-<li>sms</li>
-<li>native web + Android</li>
-<li>Facebook Messenger</li>
-<li>Slack</li>
-<li>Twitter DMs</li>
-</ul>
+<p>Topos reads Schedule K-1 tax forms so accountants and attorneys don't have to key them in by hand.</p>
+<p>A family office or fund can receive hundreds of K-1s a year, each from a different partnership with its own layout, footnotes and attached statements. Topos ingests the PDFs, extracts every box, and flags anything it isn't sure about for a person to check against the original page. Verified data rolls up into an ownership graph, a data table and Excel exports, and an analyst chat answers questions over the verified numbers.</p>
 <h3>Technology</h3>
-<p>I used Firebase and Google Cloud Platform extensively.</p>
-<ul>
-<li>Data is stored in Firestore and the Firebase Realtime Database (RTDB).</li>
-<li>Logging is fed into BigQuery.</li>
-<li>Google Cloud Build handles CI/CD.</li>
-</ul>
-<p>The front end is <a href="https://nextjs.org/">Next.js</a>.</p>
-<p>I love Next! The routing and static rendering are my favorite parts. I get so sick of complex routing with <code>react-router</code>. Next is a great project and I can't sing its praises enough.</p>
+<p>Topos is a Turborepo monorepo with a Next.js front end on Firebase App Hosting. Firebase handles auth and file storage, and each tenant's tax data lives in its own Turso (libSQL) database so one client's records are physically separate from another's.</p>
+<p>Extraction runs on Gemini through the Vercel AI SDK. Most of the work has gone into measuring accuracy: a labeled corpus, paired comparisons between prompt and model changes, and validation rules that cross-check the numbers a K-1 is supposed to agree on.</p>
 </div>
 
       </div>
